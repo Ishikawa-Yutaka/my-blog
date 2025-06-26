@@ -1,0 +1,46 @@
+---
+// src/components/Header.astro
+---
+
+<div class="header">
+    <div class="logo">
+        <a href="/">My Blog</a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">ホーム</a></li>
+            <li><a href="/blog">ブログ</a></li>
+            <li><a href="/about">プロフィール</a></li>
+        </ul>
+    </nav>
+</div>
+
+<style>
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 2rem;
+    }
+    .logo a {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+    }
+    nav ul {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+    }
+    nav a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+    }
+    nav a:hover {
+        color: #0066cc;
+    }
+</style>

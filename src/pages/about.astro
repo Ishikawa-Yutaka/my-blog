@@ -1,0 +1,81 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="プロフィール">
+  <Header slot="header" />
+
+  <section class="about">
+    <div class="profile-container">
+      <div class="profile-image">
+        <img src="/images/profile.jpg" alt="プロフィール画像" />
+      </div>
+      <div class="profile-content">
+        <h1>About Me</h1>
+        <p>はじめまして、[あなたの名前]です。</p>
+        <p>このブログでは、Web開発やプログラミング、趣味の旅行や読書について発信しています。</p>
+
+        <h2>経歴</h2>
+        <p>ここに簡単な経歴や自己紹介を記入してください。</p>
+
+        <h2>スキル</h2>
+        <ul>
+          <li>HTML/CSS</li>
+          <li>JavaScript</li>
+          <li>Astro</li>
+          <li>React</li>
+        </ul>
+
+        <h2>連絡先</h2>
+        <p>TwitterやGitHubなどのSNSリンクを設置してください。</p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .about {
+    padding: 2rem 0;
+  }
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .profile-image {
+    text-align: center;
+  }
+  .profile-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  h1 {
+    margin-bottom: 1rem;
+  }
+  h2 {
+    margin: 1.5rem 0 0.5rem;
+  }
+  ul {
+    margin-left: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .profile-container {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+    .profile-image {
+      flex: 0 0 30%;
+    }
+    .profile-content {
+      flex: 1;
+    }
+  }
+</style>
