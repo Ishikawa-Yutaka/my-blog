@@ -11,7 +11,7 @@ const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
 export default defineConfig({
   site: "https://Ishikawa-Yutaka.github.io",
-  base: isGitHubPages ? "/my-blog" : "/",
+  base: "/my-blog",
   build: {
     // 必要に応じて設定を変更
   },
