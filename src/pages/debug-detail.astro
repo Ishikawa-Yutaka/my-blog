@@ -1,6 +1,7 @@
 ---
 // 詳細デバッグ用ページ
 const baseUrl = import.meta.env.BASE_URL;
+const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
 ---
 
 <html lang="en">
@@ -34,52 +35,61 @@ const baseUrl = import.meta.env.BASE_URL;
 		<div class="debug-info">
 			<h3>Environment Info</h3>
 			<p><strong>Site:</strong> {Astro.site}</p>
-			<p><strong>Base URL:</strong> {baseUrl}</p>
+			<p><strong>Base URL (raw):</strong> {baseUrl}</p>
+			<p><strong>Base URL (normalized):</strong> {normalizedBaseUrl}</p>
 			<p><strong>URL:</strong> {Astro.url}</p>
 			<p><strong>User Agent:</strong> <span id="userAgent"></span></p>
 		</div>
 
 		<div class="image-test">
-			<h3>Test 1: test.jpg (2.3MB) - Dynamic Base URL</h3>
-			<img src={`${baseUrl}images/test.jpg`} alt="Test 1" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
+			<h3>Test 1: test.jpg (2.3MB) - Normalized Base URL</h3>
+			<img src={`${normalizedBaseUrl}images/test.jpg`} alt="Test 1" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
 			<p id="test1-status">Loading...</p>
+			<p><strong>URL:</strong> {normalizedBaseUrl}images/test.jpg</p>
+		</div>
+
+		<div class="image-test">
+			<h3>Test 2: sample.jpg (1B) - Normalized Base URL</h3>
+			<img src={`${normalizedBaseUrl}images/sample.jpg`} alt="Test 2" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
+			<p id="test2-status">Loading...</p>
+			<p><strong>URL:</strong> {normalizedBaseUrl}images/sample.jpg</p>
+		</div>
+
+		<div class="image-test">
+			<h3>Test 3: favicon.svg - Normalized Base URL</h3>
+			<img src={`${normalizedBaseUrl}favicon.svg`} alt="Test 3" style="max-width: 100px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
+			<p id="test3-status">Loading...</p>
+			<p><strong>URL:</strong> {normalizedBaseUrl}favicon.svg</p>
+		</div>
+
+		<div class="image-test">
+			<h3>Test 4: Raw Base URL (for comparison)</h3>
+			<img src={`${baseUrl}images/test.jpg`} alt="Test 4" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
+			<p id="test4-status">Loading...</p>
 			<p><strong>URL:</strong> {baseUrl}images/test.jpg</p>
 		</div>
 
 		<div class="image-test">
-			<h3>Test 2: sample.jpg (1B) - Dynamic Base URL</h3>
-			<img src={`${baseUrl}images/sample.jpg`} alt="Test 2" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
-			<p id="test2-status">Loading...</p>
-			<p><strong>URL:</strong> {baseUrl}images/sample.jpg</p>
-		</div>
-
-		<div class="image-test">
-			<h3>Test 3: favicon.svg - Dynamic Base URL</h3>
-			<img src={`${baseUrl}favicon.svg`} alt="Test 3" style="max-width: 100px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
-			<p id="test3-status">Loading...</p>
-			<p><strong>URL:</strong> {baseUrl}favicon.svg</p>
-		</div>
-
-		<div class="image-test">
-			<h3>Test 4: Static path (for comparison)</h3>
-			<img src="/images/test.jpg" alt="Test 4" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
-			<p id="test4-status">Loading...</p>
+			<h3>Test 5: Static path (for comparison)</h3>
+			<img src="/images/test.jpg" alt="Test 5" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
+			<p id="test5-status">Loading...</p>
 			<p><strong>URL:</strong> /images/test.jpg</p>
 		</div>
 
 		<div class="image-test">
-			<h3>Test 5: External Image (for comparison)</h3>
+			<h3>Test 6: External Image (for comparison)</h3>
 			<img src="https://via.placeholder.com/300x200/007cba/ffffff?text=Test" alt="External Test" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
-			<p id="test5-status">Loading...</p>
+			<p id="test6-status">Loading...</p>
 		</div>
 
 		<div class="debug-info">
 			<h3>Manual Tests</h3>
 			<p>Try opening these URLs directly in a new tab:</p>
 			<ul>
-				<li><a href={`${baseUrl}images/test.jpg`} target="_blank">test.jpg (Dynamic)</a></li>
-				<li><a href={`${baseUrl}images/sample.jpg`} target="_blank">sample.jpg (Dynamic)</a></li>
-				<li><a href={`${baseUrl}favicon.svg`} target="_blank">favicon.svg (Dynamic)</a></li>
+				<li><a href={`${normalizedBaseUrl}images/test.jpg`} target="_blank">test.jpg (Normalized)</a></li>
+				<li><a href={`${normalizedBaseUrl}images/sample.jpg`} target="_blank">sample.jpg (Normalized)</a></li>
+				<li><a href={`${normalizedBaseUrl}favicon.svg`} target="_blank">favicon.svg (Normalized)</a></li>
+				<li><a href={`${baseUrl}images/test.jpg`} target="_blank">test.jpg (Raw)</a></li>
 				<li><a href="/images/test.jpg" target="_blank">test.jpg (Static)</a></li>
 			</ul>
 		</div>
