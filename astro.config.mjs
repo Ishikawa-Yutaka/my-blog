@@ -15,7 +15,8 @@ const isGitHubPages =
 export default defineConfig({
   site: "https://ishikawa-yutaka.github.io",
   base: "/my-blog",
+  trailingSlash: "never",
   build: {
-    // 必要に応じて設定を変更
+    assets: "_astro",
   },
 });
