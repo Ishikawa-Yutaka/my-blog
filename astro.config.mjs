@@ -13,7 +13,7 @@ const isGitHubPages =
   process.env.CI === "true";
 
 export default defineConfig({
-  site: "https://Ishikawa-Yutaka.github.io",
+  site: "https://ishikawa-yutaka.github.io",
   base: "/my-blog",
   build: {
     // 必要に応じて設定を変更
