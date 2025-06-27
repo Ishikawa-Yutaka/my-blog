@@ -1,0 +1,95 @@
+---
+// 詳細デバッグ用ページ
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Detailed Debug - Image Paths</title>
+		<style>
+			.debug-info {
+				background: #f5f5f5;
+				padding: 10px;
+				margin: 10px 0;
+				border-left: 4px solid #007cba;
+			}
+			.image-test {
+				border: 2px solid #ccc;
+				padding: 10px;
+				margin: 10px 0;
+			}
+			.error {
+				color: red;
+			}
+			.success {
+				color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Detailed Image Path Debug</h1>
+		
+		<div class="debug-info">
+			<h3>Environment Info</h3>
+			<p><strong>Site:</strong> {Astro.site}</p>
+			<p><strong>URL:</strong> {Astro.url}</p>
+			<p><strong>User Agent:</strong> <span id="userAgent"></span></p>
+		</div>
+
+		<div class="image-test">
+			<h3>Test 1: test.jpg (2.3MB)</h3>
+			<img src="/images/test.jpg" alt="Test 1" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
+			<p id="test1-status">Loading...</p>
+			<p><strong>URL:</strong> https://ishikawa-yutaka.github.io/my-blog/images/test.jpg</p>
+		</div>
+
+		<div class="image-test">
+			<h3>Test 2: sample.jpg (1B)</h3>
+			<img src="/images/sample.jpg" alt="Test 2" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
+			<p id="test2-status">Loading...</p>
+			<p><strong>URL:</strong> https://ishikawa-yutaka.github.io/my-blog/images/sample.jpg</p>
+		</div>
+
+		<div class="image-test">
+			<h3>Test 3: favicon.svg</h3>
+			<img src="/favicon.svg" alt="Test 3" style="max-width: 100px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
+			<p id="test3-status">Loading...</p>
+			<p><strong>URL:</strong> https://ishikawa-yutaka.github.io/my-blog/favicon.svg</p>
+		</div>
+
+		<div class="image-test">
+			<h3>Test 4: External Image (for comparison)</h3>
+			<img src="https://via.placeholder.com/300x200/007cba/ffffff?text=Test" alt="External Test" style="max-width: 300px;" onload="this.nextElementSibling.textContent='✅ Loaded successfully'" onerror="this.nextElementSibling.textContent='❌ Failed to load'"/>
+			<p id="test4-status">Loading...</p>
+		</div>
+
+		<div class="debug-info">
+			<h3>Manual Tests</h3>
+			<p>Try opening these URLs directly in a new tab:</p>
+			<ul>
+				<li><a href="https://ishikawa-yutaka.github.io/my-blog/images/test.jpg" target="_blank">test.jpg</a></li>
+				<li><a href="https://ishikawa-yutaka.github.io/my-blog/images/sample.jpg" target="_blank">sample.jpg</a></li>
+				<li><a href="https://ishikawa-yutaka.github.io/my-blog/favicon.svg" target="_blank">favicon.svg</a></li>
+			</ul>
+		</div>
+
+		<script>
+			const userAgentElement = document.getElementById('userAgent');
+			if (userAgentElement) {
+				userAgentElement.textContent = navigator.userAgent;
+			}
+			
+			// 画像の読み込み状況を監視
+			const images = document.querySelectorAll('img');
+			images.forEach((img, index) => {
+				img.addEventListener('load', function() {
+					console.log(`Image ${index + 1} loaded successfully`);
+				});
+				img.addEventListener('error', function() {
+					console.error(`Image ${index + 1} failed to load`);
+				});
+			});
+		</script>
+	</body>
+</html> 
