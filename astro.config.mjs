@@ -6,13 +6,15 @@
 
 import { defineConfig } from "astro/config";
 
-// 環境に応じてbaseパスを設定
-const isProduction =
-  process.env.NODE_ENV === "production" || process.env.GITHUB_PAGES === "true";
+// GitHub Pages環境の検出
+const isGitHubPages =
+  process.env.GITHUB_PAGES === "true" ||
+  process.env.NODE_ENV === "production" ||
+  process.env.CI === "true";
 
 export default defineConfig({
   site: "https://Ishikawa-Yutaka.github.io",
-  base: isProduction ? "/my-blog" : "/",
+  base: isGitHubPages ? "/my-blog" : "/",
   build: {
     // 必要に応じて設定を変更
   },
