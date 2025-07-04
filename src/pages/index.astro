@@ -1,25 +1,11 @@
 ---
 import { NORMALIZED_BASE_URL, getPath } from '../env';
+import Layout from '../layouts/Layout.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href={getPath('favicon.svg')} />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astroだよねー</h1>
-		
-		<!-- 正しい画像パスの例 -->
-		<img src={getPath('images/test.jpg')} alt="サンプル画像" />
-		
-		<!-- 他の静的ファイルも同様 -->
-		<p>このパスは開発時も本番時も正しく動作します</p>
-		
-		<p><strong>Base URL:</strong> {NORMALIZED_BASE_URL}</p>
-		<p><strong>Image URL:</strong> {getPath('images/test.jpg')}</p>
-	</body>
-</html>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<main>
+
+</main>
+</Layout>
