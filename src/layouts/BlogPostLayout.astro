@@ -1,11 +1,11 @@
 ---
 // src/layouts/BlogPostLayout.astro
-import BaseLayout from './BaseLayout.astro';
+// import BaseLayout from './BaseLayout.astro';
 
 const { frontmatter } = Astro.props;
 ---
-
-<BaseLayout title={frontmatter.title}>
+<!-- 
+<BaseLayout title={frontmatter.title}> -->
     <slot name="header" slot="header" />
 
     <article>
@@ -23,8 +23,8 @@ const { frontmatter } = Astro.props;
         </div>
     </article>
 
-    <slot name="footer" slot="footer" />
-</BaseLayout>
+    <!-- <slot name="footer" slot="footer" />
+</BaseLayout> -->
 
 <style>
     article {

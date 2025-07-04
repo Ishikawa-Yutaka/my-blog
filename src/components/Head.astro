@@ -1,6 +1,8 @@
 ---
 // src/layouts/BaseLayout.astro
-const { title } = Astro.props;
+import { SITE_TITLE } from '../consts'
+import '../styles/global.css'
+import { getPath } from '../env';
 ---
 
 <!DOCTYPE html>
@@ -8,6 +10,10 @@ const { title } = Astro.props;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} | My Blog</title>
+    <title>{SITE_TITLE}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@200;300;400;500&family=M+PLUS+1:wght@100..900&display=swap" rel="stylesheet">
 </head>
