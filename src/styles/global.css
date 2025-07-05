@@ -4,8 +4,13 @@
   --text-color: #333;
   --accent-color: #4a90e2;
   --background-color: #fff;
-  --light-gray: #f0f0f0;
+  --light-gray: #f7f7f7;
   --border-color: #ddd;
+  --category-web: #f1db24;
+  --category-photo: #44bfe2;
+  --category-stroll: #efb217;
+  --category-succulent: #28c691;
+  --category-other: #c46f2a;
 }
 
 html {
@@ -37,13 +42,15 @@ h2,
 nav {
   font-style: normal;
   text-decoration: none;
-  font-family: "IBM Plex Sans JP", sans-serif;
-  /* font-family: "M PLUS 1", sans-serif; */
+  font-family: "M PLUS 1", sans-serif;
   font-optical-sizing: auto;
 }
 
 h3,
-p {
+p,
+span,
+button,
+a {
   font-family: "IBM Plex Sans JP", sans-serif;
   font-style: normal;
 }

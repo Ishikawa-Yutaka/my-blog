@@ -1,28 +1,34 @@
 ---
+import { getPath } from '../env';
 // src/components/Header.astro
 ---
 
-<div class="header">
+<header class="header">
     <div class="logo">
-        <a href="/">My Blog</a>
+        <a href="/"><img src={getPath('images/logo-large.png')} alt="logo"></a>
     </div>
     <nav>
         <ul>
-            <li><a href="/">ホーム</a></li>
-            <li><a href="/blog">ブログ</a></li>
-            <li><a href="/about">プロフィール</a></li>
+            <li><a href="/contact">Home</a></li>
+            <li><a href="/">Web</a></li>
+            <li><a href="/blog">Photo</a></li>
+            <li><a href="/about">Stroll</a></li>
+            <li><a href="/contact">Succulent</a></li>
         </ul>
     </nav>
-</div>
+</header>
 
 <style>
     .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 0;
-        border-bottom: 1px solid #eee;
-        margin-bottom: 2rem;
+        padding: 1rem 4vw;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #fff;
+        box-shadow: 0px 2px 6px #f4f4f4;
     }
     .logo a {
         font-size: 1.5rem;
@@ -30,15 +36,23 @@
         text-decoration: none;
         color: #333;
     }
+    .logo img {
+        width: 80px;
+    }
     nav ul {
         display: flex;
-        gap: 1.5rem;
+        gap: 1.8em;
         list-style: none;
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+        padding-inline-start: 0px;
+        padding-inline-end: 0px;
     }
     nav a {
         text-decoration: none;
         color: #333;
-        font-weight: 500;
+        font-size: 1.7rem;
+        font-weight: 200;
     }
     nav a:hover {
         color: #0066cc;
