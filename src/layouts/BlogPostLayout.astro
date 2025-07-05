@@ -1,12 +1,65 @@
 ---
 // src/layouts/BlogPostLayout.astro
-// import BaseLayout from './BaseLayout.astro';
-
+import { NORMALIZED_BASE_URL, getPath } from '../env';
 const { frontmatter } = Astro.props;
 ---
+<main>
+  <div class="page-category">Web<span>- ウェブ</span></div>
+    <article class="blog-post container">
+      <header class="post-header">
+        <h1 class="post-title">
+          ここはブログのタイトルが入るところここはブログのタイトル
+        </h1>
+        <time class="post-date" datetime="2025-06-29">2025/06/29</time>
+        <img src={getPath('images/img-test.png')} alt="logo">
+      </header>
+
+      <div class="post-content">
+        <h2>ここはh2の見出しが入るところですわ</h2>
+        <p>
+          ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですね、しかもpタグではいりますね。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですね、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。
+        </p>
+
+        <h2>ここはh2の見出しが入るところですわ</h2>
+        <p>
+          ここはブログの本文が入るところですね、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですね、しかもpタグではいりますね。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。
+        </p>
+
+        <figure>
+          <img
+            src="https://via.placeholder.com/800x500?text=Image+Placeholder"
+            alt="記事の画像"
+          />
+          <figcaption>画像も入りますわ</figcaption>
+        </figure>
+
+        <h2>ここはh2の見出しが入るところですわ</h2>
+        <p>
+          ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですね、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですね、しかもタグではいりますね。ここはブログの本文が入るところですね、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますね。
+        </p>
+      </div>
+
+      <nav class="post-navigation">
+        <a href="#">Topページへ</a>
+        <a href="#">Web 一覧へ</a>
+        <a href="#">Photo一覧へ</a>
+        <a href="#">Stroll一覧へ</a>
+        <a href="#">Succulents 一覧へ</a>
+      </nav>
+    </article>
+  </main>
+
+
+
+
+
+
+
+
+
 <!-- 
 <BaseLayout title={frontmatter.title}> -->
-    <slot name="header" slot="header" />
+    <!-- <slot name="header" slot="header" />
 
     <article>
         <h1>{frontmatter.title}</h1>
@@ -18,16 +71,159 @@ const { frontmatter } = Astro.props;
             ))}
         </div>
 
-        <div class="content">
-            <slot /> <!-- マークダウンコンテンツがここに入る -->
-        </div>
-    </article>
+        <div class="content"> -->
+            <!-- <slot /> マークダウンコンテンツがここに入る -->
+        <!-- </div>
+    </article> -->
 
     <!-- <slot name="footer" slot="footer" />
 </BaseLayout> -->
 
 <style>
-    article {
+/* style.css にこの部分を追記 */
+
+/* ===============================================
+   ブログ詳細ページ用のスタイル
+   =============================================== */
+
+/* ヘッダー */
+.site-header .header-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 15px;
+}
+.site-header .page-title {
+  margin: 0;
+  font-size: 2rem;
+}
+.site-header .breadcrumbs {
+  margin: 0;
+  font-size: 1rem;
+  color: #777;
+}
+.site-header .global-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+.site-header .global-nav a {
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+/* 記事本体 */
+.blog-post {
+  max-width: 800px; /* 記事エリアの最大幅を少し狭くして読みやすくする */
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.post-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.post-header img {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.post-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin: 0 0 10px 0;
+  line-height: 1.5;
+  font-family: 'IBM Plex Sans JP', sans-serif;
+  letter-spacing: 0.01em;
+}
+.post-date {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 200;
+    text-align: right;
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.04em;
+}
+
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+.post-content h2 {
+  font-size: 1.6rem;
+  font-family: 'IBM Plex Sans JP', sans-serif;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-color);
+}
+.post-content p {
+  margin: 0 0 20px 0;
+}
+.post-content figure {
+  margin: 40px 0;
+}
+.post-content figcaption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 10px;
+}
+.post-content img {
+  border-radius: 5px;
+}
+
+/* 記事下のナビゲーション */
+.post-navigation {
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+.post-navigation a {
+  display: block;
+  padding: 10px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  color: var(--main-color);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.post-navigation a:hover {
+  background-color: var(--light-gray);
+}
+
+/* レスポンシブ調整（ブログ詳細ページ） */
+@media (max-width: 768px) {
+  /* .post-title {
+    font-size: 1.8rem;
+  } */
+  .post-content {
+    font-size: 1rem;
+  }
+  .post-content h2 {
+    font-size: 1.4rem;
+  }
+}
+
+
+
+
+
+
+
+    /* article {
         margin: 2rem 0;
     }
     h1 {
@@ -51,5 +247,5 @@ const { frontmatter } = Astro.props;
     }
     .content {
         line-height: 1.8;
-    }
+    } */
 </style>
