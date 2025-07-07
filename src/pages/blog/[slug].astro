@@ -20,6 +20,6 @@ const { Content } = await post.render();
 ---
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <BlogPostLayout frontmatter={post.data}>
-    <div set:html={post.rendered?.html || ''} />
+    <Content />
   </BlogPostLayout>
 </Layout>
