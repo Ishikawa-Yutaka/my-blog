@@ -4,18 +4,19 @@ import { NORMALIZED_BASE_URL, getPath } from '../env';
 const { frontmatter } = Astro.props;
 ---
 <main>
-  <div class="page-category">Web<span>- ウェブ</span></div>
-    <article class="blog-post container">
-      <header class="post-header">
-        <h1 class="post-title">
-          ここはブログのタイトルが入るところここはブログのタイトル
-        </h1>
-        <time class="post-date" datetime="2025-06-29">2025/06/29</time>
-        <img src={getPath('images/img-test.png')} alt="logo">
-      </header>
-
+    <article class="blog-post"></article>
+        <div class="header-wrapper">
+          <header class="post-header">
+            <div class="category-info">Web<span>- ウェブ</span></div>
+            <h1 class="post-title">
+              ここはブログのタイトルが入るところここはブログのタイトル
+            </h1>
+            <time class="post-date" datetime="2025-06-29">2025/06/29</time>
+            <img src={getPath('images/img-test.png')} alt="logo">
+          </header>
+        </div>
       <div class="post-content">
-        <h2>ここはh2の見出しが入るところですわ</h2>
+        <h2>ここはh2の見出しが入るところですわここはh2の見出しが入るところですわここはh2の見出しが入るところですわ</h2>
         <p>
           ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですね、しかもpタグではいりますね。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですね、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。ここはブログの本文が入るところですわ、しかもpタグではいりますわ。
         </p>
@@ -27,7 +28,7 @@ const { frontmatter } = Astro.props;
 
         <figure>
           <img
-            src="https://via.placeholder.com/800x500?text=Image+Placeholder"
+            src={getPath('images/img-test.png')}
             alt="記事の画像"
           />
           <figcaption>画像も入りますわ</figcaption>
@@ -86,57 +87,63 @@ const { frontmatter } = Astro.props;
    ブログ詳細ページ用のスタイル
    =============================================== */
 
-/* ヘッダー */
-.site-header .header-top {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding-bottom: 15px;
+.category-info {
+  font-size: 2.5rem;
+  font-weight: 100;
+  letter-spacing: 0.04em;
+  color: var(--text-color);
+  display: block;
+  margin-bottom: 0.5em;
+  position: fixed;
+  top: 87px;
+  z-index: 10000;
+  background-color: rgba(255, 255, 255, 0.3); 
+  width: 117px;
+  /* 背景を10px分ぼかす */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari向けのベンダープレフィックス */
 }
-.site-header .page-title {
-  margin: 0;
-  font-size: 2rem;
+
+.category-info::first-letter{
+  font-size: 3rem;
+  color: var(--category-web);
 }
-.site-header .breadcrumbs {
-  margin: 0;
-  font-size: 1rem;
-  color: #777;
-}
-.site-header .global-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding-top: 15px;
-  border-top: 1px solid var(--border-color);
-}
-.site-header .global-nav a {
-  color: var(--main-color);
-  text-decoration: none;
+
+.category-info span {
+  font-size: 1.3rem;
+  vertical-align: middle;
+  margin-left: 0.5em;
 }
 
 /* 記事本体 */
-.blog-post {
-  max-width: 800px; /* 記事エリアの最大幅を少し狭くして読みやすくする */
-  margin-top: 40px;
-  margin-bottom: 40px;
+.header-wrapper{
+  background-color: var(--main-color);
+  padding: 15px 0 20px;
+  margin-top: ８０px;
 }
 
 .post-header {
   text-align: center;
-  margin-bottom: 40px;
 }
+.post-content{
+  text-align: left;
+}
+.post-header,.post-content {
+  max-width: 800px; /* 記事エリアの最大幅を少し狭くして読みやすくする */
+  margin: 40px auto;
+  padding: 0 4vw;
+}
+
 .post-header img {
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
   height: auto;
   object-fit: cover;
   margin-bottom: 20px;
 }
 .post-title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 400;
   margin: 0 0 10px 0;
   line-height: 1.5;
@@ -150,37 +157,63 @@ const { frontmatter } = Astro.props;
     text-align: right;
     display: inline-block;
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin-bottom: 0.5em;
     letter-spacing: 0.04em;
 }
 
 .post-content {
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   line-height: 1.8;
+  text-indent: 1em;
+  letter-spacing: 0.02em;
 }
 .post-content h2 {
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   font-family: 'IBM Plex Sans JP', sans-serif;
+  font-weight:500;
+  color: var(--text-color);
   margin-top: 60px;
   margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 7px;
+  padding-left: 4px;
+  border-bottom: 1px solid var(--category-web);
+  position: relative;
 }
+
+.post-content h2::before{
+  content: "";
+  display: block;
+  width: 5px;
+  height: 21px;
+  background-color: var(--category-web);
+  position: absolute;
+  top: 8px;
+  left: 0;
+}
+
 .post-content p {
   margin: 0 0 20px 0;
+  font-weight:400;
 }
 .post-content figure {
   margin: 40px 0;
 }
+
+.post-content figure img {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
 .post-content figcaption {
   text-align: center;
-  font-size: 0.9rem;
-  color: #777;
-  margin-top: 10px;
-}
-.post-content img {
-  border-radius: 5px;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-top: 0.1em;
 }
 
 /* 記事下のナビゲーション */
@@ -210,11 +243,16 @@ const { frontmatter } = Astro.props;
     font-size: 1.8rem;
   } */
   .post-content {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
+
   .post-content h2 {
-    font-size: 1.4rem;
+    font-size: 1.9rem;
   }
+.post-content h2::before{
+  top: 4px;
+ }
+
 }
 
 
