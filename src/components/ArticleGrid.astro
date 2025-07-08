@@ -1,0 +1,118 @@
+---
+// src/components/ArticleGrid.astro
+import { getPath } from '../env';
+
+interface Props {
+  posts: any[];
+  categoryName: string;
+}
+
+const { posts, categoryName } = Astro.props;
+---
+
+<div class="article-grid">
+  {posts.map((post) => (
+    <article class="article-card">
+      <img src={post.data.image || getPath('images/img-test.png')} alt={post.data.title}>
+      <div class="article-card-content">
+        <p class="meta">
+          <span class="category" data-category={post.data.category.toLowerCase()}>{categoryName}</span>
+          <time class="date" datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('ja-JP')}</time>
+        </p>
+        <h3><a href={`/my-blog/blog/${post.slug}`}>{post.data.title}</a></h3>
+      </div>
+    </article>
+  ))}
+</div>
+
+<style>
+  /* CSS GRID を使用した記事一覧 */
+  .article-grid {
+    display: grid;
+    /* 画面幅に応じて列数を自動調整 */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 30px 4vw 30px;
+  }
+
+  .article-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-width: 380px;
+    margin: auto;
+  }
+
+  .article-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background-color: var(--light-gray);
+  }
+
+  .article-card-content {
+    padding: 0 15px 11px;
+    flex-grow: 1; /* 内容が少なくても高さを揃える */
+  }
+
+  .article-card-content .meta {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+
+  .article-card-content .category{
+    font-weight: 300;
+    color: #fff;
+    font-size: 1.3rem;
+    padding: 0.1em 0.5em;
+    border-radius: 50px;
+    margin-right: 1em;
+    vertical-align: text-top;
+  }
+
+  .article-card-content .category[data-category="web"] {
+    background-color: var(--category-web);
+  }
+
+  .article-card-content .category[data-category="photo"] {
+    background-color: var(--category-photo);
+  }
+
+  .article-card-content .category[data-category="stroll"] {
+    background-color: var(--category-stroll);
+  }
+
+  .article-card-content .category[data-category="succulent"] {
+    background-color: var(--category-succulent);
+  }
+
+  .article-card-content .date {
+    font-weight: 200;
+    color: var(--text-color);
+    font-size: 1.3rem;
+    margin-left: 0.5em;
+  }
+
+  .article-card-content h3 {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .article-card-content h3 a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .article-card-content h3 a:hover {
+    color: var(--main-color);
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .article-card:not(:last-child){
+      margin-bottom: 5%;
+    }
+  }
+</style> 

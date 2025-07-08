@@ -34,11 +34,11 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: '�
       </div>
 
       <nav class="post-navigation">
-        <a href="/">Topページへ</a>
-        <a href="/blog">Web 一覧へ</a>
-        <a href="/blog">Photo一覧へ</a>
-        <a href="/blog">Stroll一覧へ</a>
-        <a href="/blog">Succulents 一覧へ</a>
+        <a href="/my-blog">Topページへ</a>
+        <a href="/my-blog/blog" class={frontmatter.category === 'web' ? 'current' : ''}>Web 一覧へ</a>
+        <a href="/my-blog/blog" class={frontmatter.category === 'photo' ? 'current' : ''}>Photo一覧へ</a>
+        <a href="/my-blog/blog" class={frontmatter.category === 'stroll' ? 'current' : ''}>Stroll一覧へ</a>
+        <a href="/my-blog/blog" class={frontmatter.category === 'succulent' ? 'current' : ''}>Succulents 一覧へ</a>
       </nav>
     </article>
   </main>
@@ -223,6 +223,17 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: '�
 }
 .post-navigation a:hover {
   background-color: var(--light-gray);
+}
+
+.post-navigation a.current {
+  background-color: var(--main-color);
+  color: white;
+  font-weight: 500;
+}
+
+.post-navigation a.current:hover {
+  background-color: var(--main-color);
+  opacity: 0.9;
 }
 
 /* レスポンシブ調整（ブログ詳細ページ） */

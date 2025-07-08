@@ -1,7 +1,36 @@
 	---
 	import { NORMALIZED_BASE_URL, getPath } from '../env';
-	import Layout from '../layouts/Layout.astro'
-	import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import Layout from '../layouts/Layout.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import { getCollection } from 'astro:content';
+import ArticleGrid from '../components/ArticleGrid.astro';
+
+	// 全投稿を取得
+	const allPosts = await getCollection('blog');
+
+	// 投稿日順にソート（新しい順）
+	const sortedPosts = allPosts.sort((a, b) => 
+		new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+	);
+
+	// カテゴリー別に投稿を分類
+	const postsByCategory = {
+		web: sortedPosts.filter(post => post.data.category === 'web').slice(0, 3),
+		photo: sortedPosts.filter(post => post.data.category === 'photo').slice(0, 3),
+		stroll: sortedPosts.filter(post => post.data.category === 'stroll').slice(0, 3),
+		succulent: sortedPosts.filter(post => post.data.category === 'succulent').slice(0, 3)
+	};
+
+	// 最新の投稿を取得（NEWセクション用）
+	const latestPost = sortedPosts[0];
+
+	// カテゴリー名の日本語マッピング
+	const categoryNames = {
+		web: { en: 'Web', ja: 'ウェブ' },
+		photo: { en: 'Photo', ja: '写真' },
+		stroll: { en: 'Stroll', ja: '散歩' },
+		succulent: { en: 'Succulent', ja: '多肉植物' }
+	};
 	---
 
 	<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -10,164 +39,61 @@
 			<div class="hero-container">
 				<img src={getPath('images/logo-large.png')} alt="logo"><h1>うにのブログ</h1>
 			</div>
-			</section>
-			<section class="new">
-				<div class="new-badge">NEW</div>
+		</section>
+			{latestPost && (
+		<section class="new">
+			<div class="new-badge">NEW</div>
 			<article class="new-article">
-				<img src={getPath('images/img-test.png')} alt="最新記事の画像">
+				<img src={latestPost.data.image || getPath('images/img-test.png')} alt={latestPost.data.title}>
 				<div class="new-content">
-					<span class="category">Stroll</span>
-					<span class="date">2025/06/29</span>
-					<h2>ここはブログのタイトルが入るところここはブログのタイトル</h2>
+					<span class="category">{categoryNames[latestPost.data.category]?.en || latestPost.data.category}</span>
+					<span class="date">{latestPost.data.date.toLocaleDateString('ja-JP')}</span>
+					<h2>{latestPost.data.title}</h2>
 				</div>
 			</article>
 			<div class="btn-container">
-				<a href="#" class="btn">ブログ一覧へ</a>
+				<a href={`/my-blog/blog/${latestPost.slug}`} class="btn">ブログ一覧へ</a>
 			</div>
 		</section>
+			)}
 
 		<section class="category-section web">
 			<header class="section-header">
 				<h2>Web<span>- ウェブ</span></h2>
-					<a href="#">Web一覧へ</a>
+				<a href="/my-blog/blog">Web一覧へ</a>
 			</header>
 			<div class="category-section-bg">
-				<div class="article-grid">
-					<article class="article-card">
-						<img src={getPath('images/img-test.png')} alt="">
-						<div class="article-card-content">
-							<p class="meta">
-								<span class="category">Web</span>
-								<time datetime="2025-06-29">2025/06/29</time>
-							</p>
-							<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-						</div>
-					</article>
-					<article class="article-card">
-						<img src={getPath('images/img-test.png')} alt="">
-						<div class="article-card-content">
-							<p class="meta">
-								<span class="category">Web</span>
-								<time datetime="2025-06-29">2025/06/29</time>
-							</p>
-							<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-						</div>
-					</article>
-					<article class="article-card">
-						<img src={getPath('images/img-test.png')} alt="">
-						<div class="article-card-content">
-							<p class="meta">
-								<span class="category">Web</span>
-								<time datetime="2025-06-29">2025/06/29</time>
-							</p>
-							<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-						</div>
-					</article>
-				</div>
-			</div>	
+				<ArticleGrid posts={postsByCategory.web} categoryName="Web" />
+			</div>
 		</section>
 
 		<section class="category-section photo">
 			<header class="section-header">
 				<h2>Photo<span>- 写真</span></h2>
-				<a href="#">Photo一覧へ</a>
+				<a href="/my-blog/blog">Photo一覧へ</a>
 			</header>
 			<div class="category-section-bg">
-				<div class="article-grid">
-					<article class="article-card">
-						<img src={getPath('images/img-test.png')} alt="">
-						<div class="article-card-content">
-							<p class="meta"><span class="category">Photo</span><time datetime="2025-06-29">2025/06/29</time></p>
-							<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-						</div>
-					</article>
-					<article class="article-card">
-						<img src={getPath('images/img-test.png')} alt="">
-						<div class="article-card-content">
-							<p class="meta"><span class="category">Photo</span><time datetime="2025-06-29">2025/06/29</time></p>
-							<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-						</div>
-					</article>
-					<article class="article-card">
-						<img src={getPath('images/img-test.png')} alt="">
-						<div class="article-card-content">
-							<p class="meta"><span class="category">Photo</span><time datetime="2025-06-29">2025/06/29</time></p>
-							<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-						</div>
-					</article>
-				</div>
+				<ArticleGrid posts={postsByCategory.photo} categoryName="Photo" />
 			</div>
 		</section>
 
 		<section class="category-section stroll">
 			<header class="section-header">
 				<h2>Stroll<span>- 散歩</span></h2>
-				<a href="#">Stroll一覧へ</a>
+				<a href="/my-blog/blog">Stroll一覧へ</a>
 			</header>
 			<div class="category-section-bg">
-			<div class="article-grid">
-				<article class="article-card">
-					<img src={getPath('images/img-test.png')} alt="">
-					<div class="article-card-content">
-						<p class="meta"><span class="category">Stroll</span><time datetime="2025-06-29">2025/06/29</time></p>
-						<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-					</div>
-				</article>
-				<article class="article-card">
-					<img src={getPath('images/img-test.png')} alt="">
-					<div class="article-card-content">
-						<p class="meta"><span class="category">Stroll</span><time datetime="2025-06-29">2025/06/29</time></p>
-						<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-					</div>
-				</article>
-				<article class="article-card">
-					<img src={getPath('images/img-test.png')} alt="">
-					<div class="article-card-content">
-						<p class="meta"><span class="category">Stroll</span><time datetime="2025-06-29">2025/06/29</time></p>
-						<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-					</div>
-				</article>
-				</div>
+				<ArticleGrid posts={postsByCategory.stroll} categoryName="Stroll" />
 			</div>
 		</section>
 
 		<section class="category-section succulent">
 			<header class="section-header">
 				<h2>Succulent<span>- 多肉植物</span></h2>
-				<a href="#">Succulent一覧へ</a>
+				<a href="/my-blog/blog">Succulent一覧へ</a>
 			</header>
 			<div class="category-section-bg">
-			<div class="article-grid">
-				<article class="article-card">
-					<img src={getPath('images/img-test.png')} alt="">
-					<div class="article-card-content">
-						<p class="meta">
-							<span class="category">Succulent</span>
-							<time datetime="2025-06-29">2025/06/29</time>
-						</p>
-						<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-					</div>
-				</article>
-				<article class="article-card">
-					<img src={getPath('images/img-test.png')} alt="">
-					<div class="article-card-content">
-						<p class="meta">
-							<span class="category">Succulent</span>
-							<time datetime="2025-06-29">2025/06/29</time>
-						</p>
-						<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-					</div>
-				</article>
-				<article class="article-card">
-					<img src={getPath('images/img-test.png')} alt="">
-					<div class="article-card-content">
-						<p class="meta">
-							<span class="category">Succulent</span>
-							<time datetime="2025-06-29">2025/06/29</time>
-						</p>
-						<h3>ここはブログのタイトルが入るところここはブログのタイトル</h3>
-					</div>
-				</article>
+				<ArticleGrid posts={postsByCategory.succulent} categoryName="Succulent" />
 			</div>
 		</section>
 	</main>
@@ -311,94 +237,6 @@
 		letter-spacing: 0.1em;
 	}
 
-	/* CSS GRID を使用した記事一覧 */
-	.article-grid {
-		display: grid;
-		/* 画面幅に応じて列数を自動調整 */
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		gap: 25px;
-		margin: 30px 4vw 30px;
-	}
-
-	.article-card {
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-		max-width: 380px;
-		margin: auto;
-	}
-
-	.article-card img {
-		width: 100%;
-		aspect-ratio: 16 / 9;
-		object-fit: cover;
-		background-color: var(--light-gray);
-	}
-
-	.article-card-content {
-		padding: 0 15px 11px;
-		flex-grow: 1; /* 内容が少なくても高さを揃える */
-	}
-
-	.article-card-content .meta {
-		font-size: 1.5rem;
-		margin-bottom: 5px;
-	}
-
-	.article-card-content .category{
-		font-weight: 300;
-		color: #fff;
-		font-size: 1.3rem;
-		padding: 0.1em 0.5em;
-		border-radius: 50px;
-		margin-right: 1em;
-		vertical-align: text-top;
-	}
-
-	.article-card-content .meta time{
-		font-weight: 200;
-	}
-
-	.web .category{
-		background-color: var(--category-web);
-	}
-
-	.photo .category{
-		background-color: var(--category-photo);
-	}	
-
-	.stroll .category{
-		background-color: var(--category-stroll);
-	}
-
-	.succulent .category{	
-		background-color: var(--category-succulent);
-	}
-
-	.article-card-content h3 {
-		font-size: 1.8rem;
-		margin: 0;
-		font-weight: 500;
-	}
-
-	.view-all-link {
-		text-align: right;
-		margin-top: 20px;
-	}
-
-	/* ボタン共通スタイル */
-	.btn {
-		display: inline-block;
-		background-color: var(--text-color);
-		color: white;
-		padding: 12px 30px;
-		border-radius: 5px;
-		transition: background-color 0.3s;
-	}
-	.btn:hover {
-		background-color: #555;
-	}
-
 	/* レスポンシブ対応 (スマートフォン) */
 @media (max-width: 768px) {
   .site-header {
@@ -426,10 +264,6 @@
   .section-header h2 span{
     font-size: 1.8rem;
   }
-
-  .article-card:not(:last-child){
-		margin-bottom: 5%;
-	}
 
   .category-section-bg{
 	padding: 65px 0 20px;
