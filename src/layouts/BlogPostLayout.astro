@@ -91,10 +91,12 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: '�
   top: 87px;
   left: 4vw;
   z-index: 10000;
-  background-color: rgba(255, 255, 255, 0.3); 
+  height: 49px;
+  padding: 0 3px;
+  background-color: rgba(255, 255, 255, 0.7); 
   /* 背景を10px分ぼかす */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Safari向けのベンダープレフィックス */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); /* Safari向けのベンダープレフィックス */
 }
 
 .category-info::first-letter{

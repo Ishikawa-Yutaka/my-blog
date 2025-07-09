@@ -16,7 +16,12 @@ const { posts, categoryName } = Astro.props;
       <img src={post.data.image || getPath('images/img-test.png')} alt={post.data.title}>
       <div class="article-card-content">
         <p class="meta">
-          <span class="category" data-category={post.data.category.toLowerCase()}>{categoryName}</span>
+            <span
+        class="category"
+        data-category={(categoryName ?? post.data.category).toLowerCase()}
+      >
+        {categoryName ?? post.data.category}
+      </span>
           <time class="date" datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('ja-JP')}</time>
         </p>
         <h3><a href={`/my-blog/blog/${post.slug}`}>{post.data.title}</a></h3>
