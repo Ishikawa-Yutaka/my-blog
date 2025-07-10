@@ -6,8 +6,8 @@ import Footer from '../components/Footer.astro';
 import { getPath } from '../env';
 ---
 
-<BaseLayout title="プロフィール">
-  <Header slot="header" />
+<Layout title="プロフィール">
+  <HeaderNavi slot="header" />
 
   <section class="about">
     <div class="profile-container">
@@ -37,7 +37,7 @@ import { getPath } from '../env';
   </section>
 
   <Footer slot="footer" />
-</BaseLayout>
+</Layout>
 
 <style>
   .about {
