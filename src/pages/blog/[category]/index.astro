@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
+import { getPath } from '../../../env';
+import ArticleGrid from '../../../components/ArticleGrid.astro';
+
+// 動的ルートで必要なパスを生成
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  
+  // ユニークなカテゴリを取得
+  const categories = [...new Set(posts.map(post => post.data.category))];
+  
+  // 各カテゴリに対してパスを生成
+  return categories.map(category => ({
+    params: { category },
+    props: { category }
+  }));
+}
+
+// propsからcategoryを取得
+const { category } = Astro.props;
+console.log('Current category:', category);
+const posts = await getCollection('blog', (post) => post.data.category === category);
+posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+
+---
+
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+    <h1>{category} の記事一覧</h1>
+    <ArticleGrid posts={posts} categoryName={category} />
+</Layout>

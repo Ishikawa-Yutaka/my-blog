@@ -4,7 +4,7 @@ import { getPath } from '../env';
 
 interface Props {
   posts: any[];
-  categoryName: string;
+  categoryName?: string; // オプショナルに変更
 }
 
 const { posts, categoryName } = Astro.props;
@@ -24,7 +24,7 @@ const { posts, categoryName } = Astro.props;
       </span>
           <time class="date" datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('ja-JP')}</time>
         </p>
-        <h3><a href={`/my-blog/blog/${post.slug}`}>{post.data.title}</a></h3>
+        <h3><a href={`/my-blog/blog/${post.data.category}/${post.slug}`}>{post.data.title}</a></h3>
       </div>
     </article>
   ))}
