@@ -21,6 +21,7 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-weight: 100;
 }
 
 body {
@@ -88,43 +89,45 @@ a {
 
 /* カテゴリー別の下線色 */
 .blog-post .post-content[data-category="web"] h2 {
-  border-bottom-color: var(--category-web) !important;
+  border-bottom-color: var(--category-web);
 }
 
 .blog-post .post-content[data-category="photo"] h2 {
-  border-bottom-color: var(--category-photo) !important;
+  border-bottom-color: var(--category-photo);
 }
 
 .blog-post .post-content[data-category="stroll"] h2 {
-  border-bottom-color: var(--category-stroll) !important;
+  border-bottom-color: var(--category-stroll);
 }
 
 .blog-post .post-content[data-category="succulent"] h2 {
-  border-bottom-color: var(--category-succulent) !important;
+  border-bottom-color: var(--category-succulent);
 }
 
 /* カテゴリー別のh2アイキャッチ色 */
 .blog-post .post-content[data-category="web"] h2::before {
-  background-color: var(--category-web) !important;
+  background-color: var(--category-web);
 }
 
 .blog-post .post-content[data-category="photo"] h2::before {
-  background-color: var(--category-photo) !important;
+  background-color: var(--category-photo);
 }
 
 .blog-post .post-content[data-category="stroll"] h2::before {
-  background-color: var(--category-stroll) !important;
+  background-color: var(--category-stroll);
 }
 
 .blog-post .post-content[data-category="succulent"] h2::before {
-  background-color: var(--category-succulent) !important;
+  background-color: var(--category-succulent);
 }
+
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
+/* 投稿一覧、category一覧pega　　*/
 .post-list {
   font-family: "IBM Plex Sans JP";
   font-optical-sizing: auto;
@@ -134,7 +137,6 @@ img {
   margin-top: 2em;
 }
 
-/* 投稿一覧、category一覧　　*/
 .post-list span {
   font-size: 2rem;
   font-weight: 200;
@@ -154,6 +156,6 @@ img {
 }
 
 .post-wrapper {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: auto;
 }

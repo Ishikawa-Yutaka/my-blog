@@ -61,18 +61,18 @@ const { posts, categoryName } = Astro.props;
   }
 
   .article-card-content .meta {
+    font-weight: 400;
     font-size: 1.5rem;
-    margin-bottom: 5px;
+    margin:0.6em 0 5px 0;
   }
 
   .article-card-content .category{
-    font-weight: 300;
+    font-size:1.4rem;
     color: #fff;
-    font-size: 1.3rem;
-    padding: 0.1em 0.5em;
+    padding: 3px 5px 1px 8px;
     border-radius: 50px;
     margin-right: 1em;
-    vertical-align: text-top;
+    vertical-align: middle;
   }
 
   .article-card-content .category[data-category="web"] {
@@ -92,9 +92,7 @@ const { posts, categoryName } = Astro.props;
   }
 
   .article-card-content .date {
-    font-weight: 200;
     color: var(--text-color);
-    font-size: 1.3rem;
     margin-left: 0.5em;
   }
 
@@ -114,7 +112,7 @@ const { posts, categoryName } = Astro.props;
     color: var(--main-color);
   }
 
-  /* レスポンシブ対応 */
+  /* 768px以下の対応 */
   @media (max-width: 768px) {
     .article-card:not(:last-child){
       margin-bottom: 5%;
