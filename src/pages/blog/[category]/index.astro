@@ -21,13 +21,52 @@ export async function getStaticPaths() {
 
 // propsからcategoryを取得
 const { category } = Astro.props;
-console.log('Current category:', category);
 const posts = await getCollection('blog', (post) => post.data.category === category);
 posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
+// カテゴリー名の日本語マッピング
+const categoryNames = {
+  web: { ja: 'ウェブ' },
+  photo: { ja: '写真' },
+  stroll: {  ja: '散歩' },
+  succulent: {ja: '多肉植物' }
+};
+const categoryLabel = categoryNames[category] || { ja: '不明' };
 ---
 
-<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-    <h1>{category} の記事一覧</h1>
-    <ArticleGrid posts={posts} categoryName={category} />
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} categoryName={category}>
+    <h1 class={`post-list ${category}`}>{category}の投稿<br/><span>{category} posts</span></h1>
+    <div class="post-wrapper">
+        <ArticleGrid posts={posts} />
+    </div>
 </Layout>
+
+<style>
+    h1::first-letter{
+		font-size: calc(3rem * 1.35);
+		font-weight: 200;
+        text-transform: uppercase;
+	}
+
+	h1.web::first-letter{
+		color: var(--category-web);
+	}
+
+	h1.photo::first-letter{
+		color: var(--category-photo);
+	}
+
+	h1.stroll::first-letter{
+		color: var(--category-stroll);
+	}
+
+	h1.sucuulent::first-letter{	
+		color: var(--category-succulent);
+	}
+
+    .post-list span::before {
+        top: -14px;
+
+    }
+   
+</style>

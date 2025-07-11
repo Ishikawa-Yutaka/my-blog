@@ -11,6 +11,17 @@ posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-    <h1>全記事一覧</h1>
-    <ArticleGrid posts={posts} />
+    <h1 class="post-list">全ての投稿<br/><span>all posts</span></h1>
+    <div class="post-wrapper">
+        <ArticleGrid posts={posts} />
+    </div>
 </Layout>
+
+<style>
+/* 1100px以上対応 */
+  @media (min-width: 1100px) {
+     .article-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

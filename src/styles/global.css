@@ -19,6 +19,8 @@ html {
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -121,4 +123,37 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+.post-list {
+  font-family: "IBM Plex Sans JP";
+  font-optical-sizing: auto;
+  font-weight: 200;
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 2em;
+}
+
+/* 投稿一覧、category一覧　　*/
+.post-list span {
+  font-size: 2rem;
+  font-weight: 200;
+  display: inline-block;
+  position: relative;
+}
+
+.post-list span::before {
+  content: "";
+  width: 35px;
+  height: 1px;
+  background-color: var(--text-color);
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.post-wrapper {
+  max-width: 1200px;
+  margin: auto;
 }
