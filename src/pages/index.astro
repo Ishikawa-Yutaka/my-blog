@@ -34,90 +34,196 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 ---
 
 	<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<main>
-		<section class="hero">
-			<div class="hero-container">
-				<img src={getPath('images/logo-large.png')} alt="logo"><h1>うにのブログ</h1>
-			</div>
-		</section>
-			{latestPost && (
-		<section class="new">
-			<div class="new-badge">NEW</div>
-			<article class="new-article">
-				<img src={latestPost.data.image || getPath('images/img-test.png')} alt={latestPost.data.title}>
-				<div class="new-content">
-					<span class="category">{categoryNames[latestPost.data.category]?.en || latestPost.data.category}</span>
-					<span class="date">{latestPost.data.date.toLocaleDateString('ja-JP')}</span>
-					<h2>{latestPost.data.title}</h2>
+		<main>
+			<section class="hero">
+				<div class="hero-container">
+					<img src={getPath('images/hero-logo.png')} alt="うにブログヒーローロゴ" class="hero-logo">
+					<img src={getPath('images/profile.png')} alt="うにのイラスト" class="hero-profile">
+					<h1 class="typing"><span>う</span><span>に</span><span>の</span><span>ブ</span><span>ロ</span><span>グ</span></h1>
 				</div>
-			</article>
-			<div class="btn-container">
-				<a href={`/my-blog/blog/${latestPost.slug}`} class="btn">ブログ一覧へ</a>
-			</div>
-		</section>
-			)}
+			</section>
+				{latestPost && (
+			<section class="new">
+				<div class="new-badge">NEW</div>
+				<article class="new-article">
+					<img src={latestPost.data.image || getPath('images/img-test.png')} alt={latestPost.data.title}>
+					<div class="new-content">
+						<span class="category">{categoryNames[latestPost.data.category]?.en || latestPost.data.category}</span>
+						<span class="date">{latestPost.data.date.toLocaleDateString('ja-JP')}</span>
+						<h2>{latestPost.data.title}</h2>
+					</div>
+				</article>
+				<div class="btn-container">
+					<a href={`/my-blog/blog/${latestPost.slug}`} class="btn">ブログ一覧へ</a>
+				</div>
+			</section>
+				)}
 
-		<section class="category-section web">
-			<header class="section-header">
-				<h2>Web<span>- ウェブ</span></h2>
-				<a href="/my-blog/blog">Web一覧へ</a>
-			</header>
-			<div class="category-section-bg">
-				<ArticleGrid posts={postsByCategory.web} categoryName="Web" />
-			</div>
-		</section>
+			<section class="category-section web">
+				<header class="section-header">
+					<h2>Web<span>- ウェブ</span></h2>
+					<a href="/my-blog/blog">Web一覧へ</a>
+				</header>
+				<div class="category-section-bg">
+					<ArticleGrid posts={postsByCategory.web} categoryName="Web" />
+				</div>
+			</section>
 
-		<section class="category-section photo">
-			<header class="section-header">
-				<h2>Photo<span>- 写真</span></h2>
-				<a href="/my-blog/blog">Photo一覧へ</a>
-			</header>
-			<div class="category-section-bg">
-				<ArticleGrid posts={postsByCategory.photo} categoryName="Photo" />
-			</div>
-		</section>
+			<section class="category-section photo">
+				<header class="section-header">
+					<h2>Photo<span>- 写真</span></h2>
+					<a href="/my-blog/blog">Photo一覧へ</a>
+				</header>
+				<div class="category-section-bg">
+					<ArticleGrid posts={postsByCategory.photo} categoryName="Photo" />
+				</div>
+			</section>
 
-		<section class="category-section stroll">
-			<header class="section-header">
-				<h2>Stroll<span>- 散歩</span></h2>
-				<a href="/my-blog/blog">Stroll一覧へ</a>
-			</header>
-			<div class="category-section-bg">
-				<ArticleGrid posts={postsByCategory.stroll} categoryName="Stroll" />
-			</div>
-		</section>
+			<section class="category-section stroll">
+				<header class="section-header">
+					<h2>Stroll<span>- 散歩</span></h2>
+					<a href="/my-blog/blog">Stroll一覧へ</a>
+				</header>
+				<div class="category-section-bg">
+					<ArticleGrid posts={postsByCategory.stroll} categoryName="Stroll" />
+				</div>
+			</section>
 
-		<section class="category-section succulent">
-			<header class="section-header">
-				<h2>Succulent<span>- 多肉植物</span></h2>
-				<a href="/my-blog/blog">Succulent一覧へ</a>
-			</header>
-			<div class="category-section-bg">
-				<ArticleGrid posts={postsByCategory.succulent} categoryName="Succulent" />
-			</div>
-		</section>
-	</main>
+			<section class="category-section succulent">
+				<header class="section-header">
+					<h2>Succulent<span>- 多肉植物</span></h2>
+					<a href="/my-blog/blog">Succulent一覧へ</a>
+				</header>
+				<div class="category-section-bg">
+					<ArticleGrid posts={postsByCategory.succulent} categoryName="Succulent" />
+				</div>
+			</section>
+		</main>
 	</Layout>
 
 	<style>
+		main{
+			margin-top: 0;
+		}
 		/* ヒーローセクション (NEW) */
 	.hero {
 		padding: 120px 0 100px;
 		text-align: center;
 		background-color: var(--main-color);
+		width:100vw;
+		height:100vh;
 	}
+
+	.hero-container{
+		max-width: 600px;
+		width: 100%;
+		margin: auto;
+		position: relative;
+		top: 50%;
+		transform: translateY(-55%);
+	}
+
 	.hero h1 {
 		display: inline-block;
 		font-size: 1.6rem;
 		font-weight: 200;
 		letter-spacing: 2.1em;
-		margin-bottom: 30px;
-		transform: translateX(13px);
+		margin: 12px 0 30px;
+		transform: translate(13px, -65px);
 	}
-	.hero img {
-	width: 300px;
-	margin: auto;
+
+	/* タイトル文字が現れるアニメーション */
+	.typing span {
+		opacity: 0;
+		display: inline-block;
+		animation: typingFade 1.45s linear forwards;
 	}
+
+	.typing span:nth-child(1) { animation-delay: 2.8s; }
+	.typing span:nth-child(2) { animation-delay: 3.0s; }
+	.typing span:nth-child(3) { animation-delay: 3.2s; }
+	.typing span:nth-child(4) { animation-delay: 3.4s; }
+	.typing span:nth-child(5) { animation-delay: 3.6s; }
+	.typing span:nth-child(6) { animation-delay: 3.8s; }
+
+	@keyframes typingFade {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	.hero-logo {
+		width:280px;
+		margin: auto;
+		transform: translate(0px, -500px);
+		animation: logoDropIn 1s cubic-bezier(.7,0,.3,1) 1.5s forwards;
+	}
+
+	/* ロゴが落ちてくるアニメーション */
+	@keyframes logoDropIn {
+	0% {
+		transform: translate(0px, -500px) scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+	25% {
+		transform: translate(0px, 0px) scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+	30% {
+		/* 着地直後に横に広がり、縦に縮む */
+		transform: translate(0px, 0px) scaleX(1.10) scaleY(0.85);
+		opacity: 1;
+	}
+	50% {
+		transform: translate(0px, -40px) scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+	75% {
+		transform: translate(0px, -35px) scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+	80% {
+		transform: translate(0px, -5px) scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+	86% {
+		transform: translate(0px, -4px) scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+	89%{
+		transform: translate(0px, -3px) scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+	90% {
+		transform: translate(0px, -1px) scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+	100% {
+		transform: translate(0px, 0px) scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+	}
+
+	.hero-profile{
+		width: 70px;
+		margin: auto;
+		/* 初期状態：画面上部外に配置 */
+		transform: translate(14px, -500px);
+		opacity: 0;
+		animation: uniDropIn 0.15s ease-out 1.2s forwards;
+	}
+	
+	/* うにが落ちてくるアニメーション */
+	@keyframes uniDropIn {
+		0% {
+			transform: translate(14px, -500px);
+			opacity: 1;
+		}
+		100% {
+			transform: translate(14px, -102px);
+			opacity: 1;
+		}
+	}
+
 	.new img {
 		width: 100%;
 		min-width: 300px;
@@ -125,6 +231,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		object-fit: cover;
 		margin: 0 auto;
 	}
+
 	.new-article {
 		position: relative;
 		width: 90%;
@@ -175,7 +282,6 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		letter-spacing: 0.1em;
 		color: var(--light-gray);
 	}
-
 
 	/* 記事セクション */
 	.category-section {
@@ -240,44 +346,120 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 
 	/* レスポンシブ対応 (スマートフォン) */
 @media (max-width: 768px) {
-  .site-header {
-    flex-direction: column;
-    gap: 15px;
-  }
-  .hero h1 {
-    font-size: 1.2rem;
-  }
-  .section-header {
-    display: block;
-	top: 7em;
-  }
+	.site-header {
+		flex-direction: column;
+		gap: 15px;
+	}
 
-  .section-header a {
-	display: block;
-    text-align: left;
-	text-indent: 1em;
-  }
+	.hero-logo {
+		width:250px;
+	}
 
-  .section-header h2{
-	margin-bottom: 8px;
-  }
+	.hero-profile{
+		width: 65px;
+		margin: auto;
+		transform: translate(14px, -90px);
+		
+		/* モバイル用の落ちてくるアニメーション */
+		opacity: 0;
+		transform: translate(14px, -180px);
+		animation: dropInMobile 0.19s ease-out 1s forwards;
+	}
+	
+	/* モバイル用の落ちてくるアニメーション */
+	@keyframes dropInMobile {
+		0% {
+			opacity: 0;
+			transform: translate(14px, -180px);
+		}
+		60% {
+			opacity: 1;
+			transform: translate(14px, -95px);
+		}
+		80% {
+			transform: translate(14px, -92px);
+		}
+		100% {
+			opacity: 1;
+			transform: translate(14px, -90px);
+		}
+	}
 
-  .section-header h2 span{
-    font-size: 1.8rem;
-  }
+	.hero h1 {
+		font-size: 1.4rem;
+		letter-spacing: 2em;
+	}
 
-  .category-section-bg{
-	padding: 65px 0 20px;
-  }
+	.section-header {
+		display: block;
+		top: 6.3em;
+	}
+
+	.section-header a {
+		display: block;
+		text-align: left;
+		text-indent: 1em;
+	}
+
+	.section-header h2{
+		margin-bottom: 8px;
+	}
+
+	.section-header h2 span{
+		font-size: 1.8rem;
+	}
+
+	.category-section-bg{
+		padding: 65px 0 20px;
+	}
 }
 
 @media (max-width: 450px) {
- .section-header h2{
-	font-size: 4.5rem;
-  }
+	.hero-logo {
+		width:230px;
+		margin: auto;
+	}
 
- .section-header h2::first-letter{
-	font-size: calc(4.5rem * 1.35);
- }
+	.hero-profile{
+		width: 58px;
+		margin: auto;
+		transform: translate(14px, -84px);
+		
+		/* 小画面用の落ちてくるアニメーション */
+		opacity: 0;
+		transform: translate(14px, -170px);
+		animation: dropInSmall 0.19s ease-out 1s forwards;
+	}
+	
+	/* 小画面用の落ちてくるアニメーション */
+	@keyframes dropInSmall {
+		0% {
+			opacity: 0;
+			transform: translate(14px, -170px);
+		}
+		60% {
+			opacity: 1;
+			transform: translate(14px, -89px);
+		}
+		80% {
+			transform: translate(14px, -86px);
+		}
+		100% {
+			opacity: 1;
+			transform: translate(14px, -84px);
+		}
+	}
+	
+	.hero h1{
+		letter-spacing: 1.76em;
+	}
+
+	.section-header h2{
+		font-size: 4.5rem;
+	}
+
+	.section-header h2::first-letter{
+		font-size: calc(4.5rem * 1.35);
+	}
 }
 </style>

@@ -13,11 +13,12 @@ import { getPath } from '../env';
     <div class="menu-container">
         <nav class="nav-menu">
             <ul>
-                <li><a href="/contact">Home</a></li>
-                <li><a href="/">Web</a></li>
-                <li><a href="/blog">Photo</a></li>
-                <li><a href="/about">Stroll</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="/web">Web</a></li>
+                <li><a href="/photo">Photo</a></li>
+                <li><a href="/stroll">Stroll</a></li>
                 <li><a href="/contact">Succulent</a></li>
+                <li><a href="/about">About</a></li>
             </ul>
         </nav>
         <div class="circle"></div>
@@ -45,6 +46,8 @@ import { getPath } from '../env';
     }
     .logo img {
         width: 80px;
+        position:relative;
+        z-index:100000;
     }
     nav ul {
         display: flex;
@@ -73,7 +76,7 @@ import { getPath } from '../env';
     }
     
 
-    /* 768px以下の対応 */
+/* 768px以下の対応 */
   @media (max-width: 768px) {
     .header{
         display:block;
@@ -97,7 +100,7 @@ import { getPath } from '../env';
         right: 4vw;
         top: 9px;
         z-index: 100000;
-        transition: opacity 0.3s ease, visibility 0.3s ease, background 0.4s ease;
+        transition: opacity 0.3s ease, visibility 0.3s ease, background 0.4s ease 0.6s;
     }
     
     /* ハンバーガーボタンがアクティブ時の背景色 */
@@ -105,11 +108,6 @@ import { getPath } from '../env';
         background: var(--main-color);
         transition: opacity 0.3s ease, visibility 0.3s ease, background 0.4s ease;
     }
-    
-    /* ハンバーガーボタンの通常状態（背景色変化を遅延） */
-        .openbtn {
-            transition: opacity 0.3s ease, visibility 0.3s ease, background 0.4s ease 0.6s;
-        }
     
     /* メニューパネル */
     .menu-container {
