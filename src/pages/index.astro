@@ -149,14 +149,14 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		color: #fff;
 		background-color: var(--category-stroll);
 		font-weight: 300;
-		font-size: 1.8rem;
+		font-size: 1.5rem;
 		padding: 0.1em 0.5em;
 		border-radius: 50px;
 	}
 	.new-content .date {
 		color: var(--text-color);
 		margin-left: 10px;
-		font-size: 1.8rem;
+		font-size: 1.4rem;
 		font-weight: 200;
 	}
 	.new-content h2 {
@@ -254,9 +254,9 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 
   .section-header a {
 	display: block;
-    text-align: right;
+    text-align: left;
+	text-indent: 1em;
   }
-
 
   .section-header h2{
 	margin-bottom: 8px;
@@ -269,5 +269,15 @@ import ArticleGrid from '../components/ArticleGrid.astro';
   .category-section-bg{
 	padding: 65px 0 20px;
   }
+}
+
+@media (max-width: 450px) {
+ .section-header h2{
+	font-size: 4.5rem;
+  }
+
+ .section-header h2::first-letter{
+	font-size: calc(4.5rem * 1.35);
+ }
 }
 </style>

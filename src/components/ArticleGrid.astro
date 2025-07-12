@@ -62,7 +62,7 @@ const { posts, categoryName } = Astro.props;
 
   .article-card-content .meta {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin:0.6em 0 5px 0;
   }
 
@@ -71,7 +71,6 @@ const { posts, categoryName } = Astro.props;
     color: #fff;
     padding: 3px 5px 1px 8px;
     border-radius: 50px;
-    margin-right: 1em;
     vertical-align: middle;
   }
 
@@ -96,13 +95,10 @@ const { posts, categoryName } = Astro.props;
     margin-left: 0.5em;
   }
 
-  .article-card-content h3 {
+  .article-card-content h3 a {
     font-size: 1.8rem;
     margin: 0;
-    font-weight: 500;
-  }
-
-  .article-card-content h3 a {
+    font-weight: 400;
     color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s;
@@ -117,5 +113,20 @@ const { posts, categoryName } = Astro.props;
     .article-card:not(:last-child){
       margin-bottom: 5%;
     }
+  
+    .article-card{
+      max-width:350px;
+    }
+    // .article-card-content h3 a {
+    //   font-size: 1.5rem;
+    // }
+    // .article-grid {
+    //   grid-template-columns: repeat(2,1fr);
+    //   gap: 8px;
+    // }
+    // .article-card-content .category{
+    //   font-size:1.2rem;
+    // }
+
   }
 </style> 
