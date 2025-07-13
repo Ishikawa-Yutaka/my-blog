@@ -21,8 +21,8 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		succulent: sortedPosts.filter(post => post.data.category === 'succulent').slice(0, 3)
 	};
 
-	// 最新の投稿を取得（NEWセクション用）
-	const latestPost = sortedPosts[0];
+	// 最新の投稿を5件取得（NEWセクション用）
+	const latestPosts = sortedPosts.slice(0, 5);
 
 	// カテゴリー名の日本語マッピング
 	const categoryNames = {
@@ -42,19 +42,34 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 					<h1 class="typing"><span>う</span><span>に</span><span>の</span><span>ブ</span><span>ロ</span><span>グ</span></h1>
 				</div>
 			</section>
-				{latestPost && (
+				{latestPosts.length > 0 && (
 			<section class="new">
 				<div class="new-badge">NEW</div>
-				<article class="new-article">
-					<img src={latestPost.data.image || getPath('images/img-test.png')} alt={latestPost.data.title}>
-					<div class="new-content">
-						<span class="category">{categoryNames[latestPost.data.category]?.en || latestPost.data.category}</span>
-						<span class="date">{latestPost.data.date.toLocaleDateString('ja-JP')}</span>
-						<h2>{latestPost.data.title}</h2>
+				{/* <!-- Slider main container --> */}
+				<div class="swiper">
+					{/* <!-- Additional required wrapper --> */}
+					<div class="swiper-wrapper">
+						{/* <!-- Slides --> */}
+						{latestPosts.map((post) => (
+							<div class="swiper-slide">
+								<article class="new-article">
+									<img src={post.data.image || getPath('images/img-test.png')} alt={post.data.title}>
+									<div class="new-content">
+										<span class="category" data-category={post.data.category}>{categoryNames[post.data.category]?.en || post.data.category}</span>
+										<span class="date">{post.data.date.toLocaleDateString('ja-JP')}</span>
+										<h2>{post.data.title}</h2>
+									</div>
+								</article>
+							</div>
+						))}
 					</div>
-				</article>
+					<div class="swiper-pagination"></div>
+					<div class="swiper-button-prev"></div>
+  					<div class="swiper-button-next"></div>
+				</div>
+
 				<div class="btn-container">
-					<a href={`/my-blog/blog/${latestPost.slug}`} class="btn">ブログ一覧へ</a>
+					<a href="/my-blog/blog" class="btn">ブログ一覧へ</a>
 				</div>
 			</section>
 				)}
@@ -139,16 +154,22 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		animation: typingFade 1.45s linear forwards;
 	}
 
-	.typing span:nth-child(1) { animation-delay: 2.8s; }
-	.typing span:nth-child(2) { animation-delay: 3.0s; }
-	.typing span:nth-child(3) { animation-delay: 3.2s; }
-	.typing span:nth-child(4) { animation-delay: 3.4s; }
-	.typing span:nth-child(5) { animation-delay: 3.6s; }
-	.typing span:nth-child(6) { animation-delay: 3.8s; }
+	.typing span:nth-child(1) { animation-delay: 2.4s; }
+	.typing span:nth-child(2) { animation-delay: 2.6s; }
+	.typing span:nth-child(3) { animation-delay: 2.8s; }
+	.typing span:nth-child(4) { animation-delay: 3.0s; }
+	.typing span:nth-child(5) { animation-delay: 3.2s; }
+	.typing span:nth-child(6) { animation-delay: 3.4s; }
 
 	@keyframes typingFade {
-		from { opacity: 0; }
-		to   { opacity: 1; }
+		0% { 
+			opacity: 0; 
+		}
+		80% {
+			opacity: 1;
+		}
+		100% { opacity: 1;
+		}
 	}
 
 	.hero-logo {
@@ -234,7 +255,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 
 	.new-article {
 		position: relative;
-		width: 90%;
+		width: 85%;
 		margin: auto;
 		max-width: 500px;
 		min-width: 300px;
@@ -244,21 +265,37 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		font-size: 5rem;
 		font-weight: 100;
 		letter-spacing: 0.2em;
-		color: var(--border-color);
+		color: var(--usually-gray);
 		margin-top: -4rem;
 	}
 	.new-content {
 		font-family: "IBM Plex Sans JP", sans-serif;
-		padding: 20px;
+		padding: 12px 5px 20px;;
 		text-align: left;
 	}
 	.new-content .category {
 		color: #fff;
-		background-color: var(--category-stroll);
 		font-weight: 300;
 		font-size: 1.5rem;
 		padding: 0.1em 0.5em;
 		border-radius: 50px;
+	}
+
+	/* カテゴリー別の背景色 */
+	.new-content .category[data-category="web"] {
+		background-color: var(--category-web);
+	}
+
+	.new-content .category[data-category="photo"] {
+		background-color: var(--category-photo);
+	}
+
+	.new-content .category[data-category="stroll"] {
+		background-color: var(--category-stroll);
+	}
+
+	.new-content .category[data-category="succulent"] {
+		background-color: var(--category-succulent);
 	}
 	.new-content .date {
 		color: var(--text-color);
@@ -344,7 +381,33 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		letter-spacing: 0.1em;
 	}
 
-	/* レスポンシブ対応 (スマートフォン) */
+	/* swiperのスタイル */
+	.swiper {
+		max-width: 600px;
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+	}
+
+	.swiper-button-prev:after {
+		content: 'prev';
+		color: var(--usually-gray);
+		transform: scale(0.7);
+	}
+
+	.swiper-button-next:after {
+		content: 'next';
+		color: var(--usually-gray);
+		transform: scale(0.7);
+	}
+
+	.wiper-pagination-bullet-active {
+		opacity: var(--swiper-pagination-bullet-opacity, 1);
+		background: var(--accent-color, var(--swiper-theme-color));
+	}
+
+
+/* 768px以下の対応 */
 @media (max-width: 768px) {
 	.site-header {
 		flex-direction: column;
@@ -414,6 +477,8 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 	}
 }
 
+
+/* 450px以下の対応 */
 @media (max-width: 450px) {
 	.hero-logo {
 		width:230px;
@@ -461,5 +526,11 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 	.section-header h2::first-letter{
 		font-size: calc(4.5rem * 1.35);
 	}
+
+	/* swiperのスタイル */
+	.swiper-button-prev:after,.swiper-button-next:after {
+		display: none;
+	}
 }
 </style>
+

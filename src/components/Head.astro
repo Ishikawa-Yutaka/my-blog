@@ -16,4 +16,28 @@ import { getPath } from '../env';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@200;300;400;500&family=M+PLUS+1:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Swiper('.swiper', {
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        loop: true,
+        speed: 2000, // トランジション速度を1秒に設定（よりスムーズ）
+        effect: 'slide', // スライドエフェクト
+        autoplay: {
+            delay: 3000, // 2秒間隔で自動スライド
+            disableOnInteraction: false, // ユーザーが操作しても自動スライドを停止しない
+            pauseOnMouseEnter: true, // マウスホバーでも停止
+            stopOnLastSlide: false, // 最後のスライドでも停止しない
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            },
+        });
+    });
+    </script>
 </head>
