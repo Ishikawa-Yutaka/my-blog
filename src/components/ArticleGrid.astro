@@ -12,21 +12,24 @@ const { posts, categoryName } = Astro.props;
 
 <div class="article-grid">
   {posts.map((post) => (
-    <article class="article-card">
-      <img src={post.data.image || getPath('images/img-test.png')} alt={post.data.title}>
-      <div class="article-card-content">
-        <p class="meta">
-            <span
-        class="category"
-        data-category={(categoryName ?? post.data.category).toLowerCase()}
-      >
-        {categoryName ?? post.data.category}
-      </span>
-          <time class="date" datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('ja-JP')}</time>
-        </p>
-        <h3><a href={`/my-blog/blog/${post.data.category}/${post.slug}`}>{post.data.title}</a></h3>
-      </div>
-    </article>
+    <a href={`/my-blog/blog/${post.data.category}/${post.slug}`} class="article-link">
+      <article class="article-card">
+        <img src={post.data.image || getPath('images/img-test.png')} alt={post.data.title}>
+        <div class="article-card-content">
+          <p class="meta">
+              <span
+          class="category"
+          data-category={(categoryName ?? post.data.category).toLowerCase()}
+        >
+          {/* トップページのカテゴリ別表示はcategoryName、投稿一覧ページはpost.data.category */}
+          {categoryName ?? post.data.category} 
+        </span>
+            <time class="date" datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('ja-JP')}</time>
+          </p>
+          <h3>{post.data.title}</h3>
+        </div>
+      </article>
+    </a>
   ))}
 </div>
 
@@ -38,6 +41,10 @@ const { posts, categoryName } = Astro.props;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
     margin: 30px 4vw 30px;
+  }
+
+  .article-link{
+    display:block:
   }
 
   .article-card {
@@ -95,7 +102,7 @@ const { posts, categoryName } = Astro.props;
     margin-left: 0.5em;
   }
 
-  .article-card-content h3 a {
+  .article-card-content h3 {
     font-size: 1.8rem;
     margin: 0;
     font-weight: 400;

@@ -11,7 +11,7 @@ import { getPath } from '../env';
   <HeaderNavi slot="header" />
 
   <div class="page-container">
-		<h1 class="gradient-text page-title">About</h1>
+		<h1 class="page-title">About</h1>
 		<div class="profile">
 			<img src= {getPath('images/profile.png')} alt="{myName}" class="profile-image">
 			<div class="profile-info">
@@ -62,6 +62,11 @@ import { getPath } from '../env';
     margin-bottom:1em;
   }
 
+  .page-title::first-letter{
+    font-size:calc(5rem * 1.2);
+    color: var(--accent-color);
+  }
+
   .profile {
 		display: flex;
 		align-items: center;
@@ -104,7 +109,7 @@ import { getPath } from '../env';
     background-color:var(--main-color);
     padding: 4em;
     border-radius: 15px;
-    box-shadow: 2px 2px 4px #ddd;
+    box-shadow: 2px 2px 4px var(--usually-gray);
   }
 
 	section{
@@ -115,7 +120,21 @@ import { getPath } from '../env';
 		font-size: 2.4rem;
     font-weight: 500;
 		color: var(--text-color);
+    position: relative;
+    padding-left: 0.55em;
 	}
+
+  h3::before{
+    content: "";
+    display: block;
+    width: 3px;
+    height: 21px;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    background-color: var(--accent-color);
+  }
+
 
   p{
     font-size:1.6rem;

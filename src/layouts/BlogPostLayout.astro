@@ -81,6 +81,7 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: '�
    =============================================== */
 
 .category-info {
+  font-family: "M PLUS 1", sans-serif;
   font-size: 2.5rem;
   font-weight: 100;
   letter-spacing: 0.04em;
@@ -133,6 +134,30 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: '�
   padding: 15px 0 20px;
   margin-top: 80px;
 }
+
+/* ブログ投稿のh2スタイル */
+.blog-post .post-content h2 {
+  font-size: 2.2rem;
+  font-family: "IBM Plex Sans JP", sans-serif;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--category-web);
+  position: relative;
+}
+
+.blog-post .post-content h2::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 21px;
+  position: absolute;
+  top: 8px;
+  left: 0;
+}
+
 
 .post-header {
   text-align: center;

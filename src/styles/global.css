@@ -50,7 +50,6 @@ main {
 
 a {
   text-decoration: none;
-  color: var(--accent-color);
 }
 
 h1,
@@ -79,30 +78,6 @@ img {
 
 li {
   list-style: none;
-}
-
-/* ブログ投稿のh2スタイル */
-.blog-post .post-content h2 {
-  font-size: 2.2rem;
-  font-family: "IBM Plex Sans JP", sans-serif;
-  font-weight: 500;
-  color: var(--text-color);
-  margin-top: 60px;
-  margin-bottom: 20px;
-  padding-bottom: 7px;
-  padding-left: 15px;
-  border-bottom: 1px solid var(--category-web);
-  position: relative;
-}
-
-.blog-post .post-content h2::before {
-  content: "";
-  display: block;
-  width: 5px;
-  height: 21px;
-  position: absolute;
-  top: 8px;
-  left: 0;
 }
 
 /* カテゴリー別の下線色 */

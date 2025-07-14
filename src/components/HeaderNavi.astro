@@ -13,12 +13,12 @@ import { getPath } from '../env';
     <div class="menu-container">
         <nav class="nav-menu">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="/web">Web</a></li>
-                <li><a href="/photo">Photo</a></li>
-                <li><a href="/stroll">Stroll</a></li>
-                <li><a href="/contact">Succulent</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/my-blog">Home</a></li>
+                <li><a href="/my-blog/blog/web">Web</a></li>
+                <li><a href="/my-blog/blog/photo">Photo</a></li>
+                <li><a href="/my-blog/blog/stroll">Stroll</a></li>
+                <li><a href="/my-blog/blog/succulent">Succulent</a></li>
+                <li><a href="/my-blog/about">About</a></li>
             </ul>
         </nav>
         <div class="circle"></div>
@@ -65,14 +65,33 @@ import { getPath } from '../env';
         opacity: 0;
         visibility: hidden;
     }
-    nav a {
+    .nav-menu a {
         text-decoration: none;
         color: #333;
         font-size: 1.7rem;
         font-weight: 200;
+        position:relative;
+        transition: color .4s;
     }
-    nav a:hover {
-        color: #0066cc;
+
+    .nav-menu a::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1.5px;
+        background-color: var(--accent-color);
+        transition: scale .4s;
+        scale: 0;
+    }
+
+    .nav-menu a:hover::after{
+        scale: 1;
+    }
+
+    .nav-menu a:hover {
+        color: var(--accent-color);
     }
     
 
@@ -195,7 +214,7 @@ import { getPath } from '../env';
     
     nav li {
         padding: 10px 0;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 0.5px solid var(--usually-gray);
     }
     
     nav li:last-child {

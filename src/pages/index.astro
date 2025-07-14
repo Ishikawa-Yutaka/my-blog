@@ -69,7 +69,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 				</div>
 
 				<div class="btn-container">
-					<a href="/my-blog/blog" class="btn">ブログ一覧へ</a>
+					<a href="/my-blog/blog" class="btn">すべての投稿を見る</a>
 				</div>
 			</section>
 				)}
@@ -120,6 +120,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		main{
 			margin-top: 0;
 		}
+		
 		/* ヒーローセクション (NEW) */
 	.hero {
 		padding: 120px 0 100px;
@@ -145,6 +146,27 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		letter-spacing: 2.1em;
 		margin: 12px 0 30px;
 		transform: translate(13px, -65px);
+	}
+
+	.hero-profile{
+		width: 70px;
+		margin: auto;
+		/* 初期状態：画面上部外に配置 */
+		transform: translate(14px, -500px);
+		opacity: 0;
+		animation: uniDropIn 0.15s ease-out 1.2s forwards;
+	}
+	
+	/* うにが落ちてくるアニメーション */
+	@keyframes uniDropIn {
+		0% {
+			transform: translate(14px, -500px);
+			opacity: 1;
+		}
+		100% {
+			transform: translate(14px, -102px);
+			opacity: 1;
+		}
 	}
 
 	/* タイトル文字が現れるアニメーション */
@@ -182,65 +204,44 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 	/* ロゴが落ちてくるアニメーション */
 	@keyframes logoDropIn {
 	0% {
-		transform: translate(0px, -500px) scaleX(1) scaleY(1);
-		opacity: 1;
-	}
-	25% {
-		transform: translate(0px, 0px) scaleX(1) scaleY(1);
-		opacity: 1;
-	}
-	30% {
-		/* 着地直後に横に広がり、縦に縮む */
-		transform: translate(0px, 0px) scaleX(1.10) scaleY(0.85);
-		opacity: 1;
-	}
-	50% {
-		transform: translate(0px, -40px) scaleX(1) scaleY(1);
-		opacity: 1;
-	}
-	75% {
-		transform: translate(0px, -35px) scaleX(1) scaleY(1);
-		opacity: 1;
-	}
-	80% {
-		transform: translate(0px, -5px) scaleX(1) scaleY(1);
-		opacity: 1;
-	}
-	86% {
-		transform: translate(0px, -4px) scaleX(1) scaleY(1);
-		opacity: 1;
-	}
-	89%{
-		transform: translate(0px, -3px) scaleX(1) scaleY(1);
-		opacity: 1;
-	}
-	90% {
-		transform: translate(0px, -1px) scaleX(1) scaleY(1);
-		opacity: 1;
-	}
-	100% {
-		transform: translate(0px, 0px) scaleX(1) scaleY(1);
-		opacity: 1;
-	}
-	}
-
-	.hero-profile{
-		width: 70px;
-		margin: auto;
-		/* 初期状態：画面上部外に配置 */
-		transform: translate(14px, -500px);
-		opacity: 0;
-		animation: uniDropIn 0.15s ease-out 1.2s forwards;
-	}
-	
-	/* うにが落ちてくるアニメーション */
-	@keyframes uniDropIn {
-		0% {
-			transform: translate(14px, -500px);
+			transform: translate(0px, -500px) scaleX(1) scaleY(1);
+			opacity: 1;
+		}
+		25% {
+			transform: translate(0px, 0px) scaleX(1) scaleY(1);
+			opacity: 1;
+		}
+		30% {
+			/* 着地直後に横に広がり、縦に縮む */
+			transform: translate(0px, 0px) scaleX(1.10) scaleY(0.85);
+			opacity: 1;
+		}
+		50% {
+			transform: translate(0px, -40px) scaleX(1) scaleY(1);
+			opacity: 1;
+		}
+		75% {
+			transform: translate(0px, -35px) scaleX(1) scaleY(1);
+			opacity: 1;
+		}
+		80% {
+			transform: translate(0px, -5px) scaleX(1) scaleY(1);
+			opacity: 1;
+		}
+		86% {
+			transform: translate(0px, -4px) scaleX(1) scaleY(1);
+			opacity: 1;
+		}
+		89%{
+			transform: translate(0px, -3px) scaleX(1) scaleY(1);
+			opacity: 1;
+		}
+		90% {
+			transform: translate(0px, -1px) scaleX(1) scaleY(1);
 			opacity: 1;
 		}
 		100% {
-			transform: translate(14px, -102px);
+			transform: translate(0px, 0px) scaleX(1) scaleY(1);
 			opacity: 1;
 		}
 	}
@@ -260,19 +261,24 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		max-width: 500px;
 		min-width: 300px;
 	}
+
 	.new .new-badge {
 		text-align: center;
-		font-size: 5rem;
+		font-family: "M PLUS 1", sans-serif;
+		font-size: 4rem;
 		font-weight: 100;
 		letter-spacing: 0.2em;
 		color: var(--usually-gray);
 		margin-top: -4rem;
+		margin-bottom: 2px;
 	}
+
 	.new-content {
 		font-family: "IBM Plex Sans JP", sans-serif;
 		padding: 12px 5px 20px;;
 		text-align: left;
 	}
+
 	.new-content .category {
 		color: #fff;
 		font-weight: 300;
@@ -297,12 +303,14 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 	.new-content .category[data-category="succulent"] {
 		background-color: var(--category-succulent);
 	}
+
 	.new-content .date {
 		color: var(--text-color);
 		margin-left: 10px;
 		font-size: 1.4rem;
 		font-weight: 200;
 	}
+
 	.new-content h2 {
 		font-size: 2rem;
 		font-family: "IBM Plex Sans JP", sans-serif;
@@ -312,15 +320,27 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		letter-spacing: 0.05em;
 
 	}
-	.btn-container {
+
+	.btn-container a {
+		display: block;
 		text-align: center;
 		font-size: 1.8rem;
-		font-weight: 200;
+		font-weight: 300;
 		letter-spacing: 0.1em;
-		color: var(--light-gray);
+		color: var(--text-color);
+		color: #fff;
+		color: var(--accent-color);
+		/* background: var(--accent-color); */
+		width: 200px;
+		margin: 1.5em auto 0;
+		/* border-radius: 39px; */
+		padding: 3px 0 1px;
+		/* border-radius: 31px; */
+		border: solid 1px var(--accent-color);
 	}
 
-	/* 記事セクション */
+
+	/* 各category記事セクション */
 	.category-section {
 		margin: 40px 0;
 	}
@@ -335,7 +355,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		align-items: center;
 		margin: 0 4vw 0;
 		position: relative;
-		top: 4em;
+		top: 3.3em;
 	}
 
 	.section-header h2 {
@@ -375,11 +395,21 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 
 	.section-header a {
 		font-style: normal;
-		font-weight: 200;
+		font-weight: 300;
 		color: var(--text-color);
 		font-size: 1.4rem;
+		text-align: center;
 		letter-spacing: 0.1em;
+		border: solid 1px;
+		padding: 2px 0;
+		background-color: var(--background-color);
 	}
+
+	/* カテゴリ別のborderカラー */
+	.web .section-header a    { border-color: var(--category-web); width: 105px;}
+	.photo .section-header a  { border-color: var(--category-photo); width: 118px; }
+	.stroll .section-header a { border-color: var(--category-stroll); width: 114px;}
+	.succulent .section-header a { border-color: var(--category-succulent); width: 150px;}
 
 	/* swiperのスタイル */
 	.swiper {
@@ -399,11 +429,6 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		content: 'next';
 		color: var(--usually-gray);
 		transform: scale(0.7);
-	}
-
-	.wiper-pagination-bullet-active {
-		opacity: var(--swiper-pagination-bullet-opacity, 1);
-		background: var(--accent-color, var(--swiper-theme-color));
 	}
 
 
