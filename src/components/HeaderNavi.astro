@@ -14,11 +14,11 @@ import { getPath } from '../env';
         <nav class="nav-menu">
             <ul>
                 <li><a href="/my-blog">Home</a></li>
-                <li><a href="/my-blog/blog/web">Web</a></li>
-                <li><a href="/my-blog/blog/photo">Photo</a></li>
-                <li><a href="/my-blog/blog/stroll">Stroll</a></li>
-                <li><a href="/my-blog/blog/succulent">Succulent</a></li>
-                <li><a href="/my-blog/about">About</a></li>
+                <li><a href={getPath('blog/web')}>Web</a></li>
+                <li><a href={getPath('blog/photo')}>Photo</a></li>
+                <li><a href={getPath('blog/stroll')}>Stroll</a></li>
+                <li><a href={getPath('blog/succulent')}>Succulent</a></li>
+                <li><a href={getPath('about')}>About</a></li>
             </ul>
         </nav>
         <div class="circle"></div>
