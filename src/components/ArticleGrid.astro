@@ -8,13 +8,18 @@ interface Props {
 }
 
 const { posts, categoryName } = Astro.props;
+
+// ここでログを出す
+posts.forEach((post) => {
+  console.log(post.data.image);
+});
 ---
 
 <div class="article-grid">
   {posts.map((post) => (
     <a href={`/my-blog/blog/${post.data.category}/${post.slug}`} class="article-link">
       <article class="article-card">
-        <img src={post.data.image || getPath('images/img-test.png')} alt={post.data.title}>
+        <img src={getPath(post.data.image || 'images/img-test.png')} alt={post.data.title}>
         <div class="article-card-content">
           <p class="meta">
               <span

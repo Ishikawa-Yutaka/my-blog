@@ -80,6 +80,13 @@ li {
   list-style: none;
 }
 
+strong,
+code,
+b,
+code {
+  font-weight: 700;
+}
+
 /* カテゴリー別の下線色 */
 .blog-post .post-content[data-category="web"] h2 {
   border-bottom-color: var(--category-web);
@@ -147,4 +154,155 @@ li {
 .post-wrapper {
   max-width: 1500px;
   margin: auto;
+}
+
+/* ブログ詳細ページのh2スタイル */
+.blog-post .post-content h2 {
+  font-size: 2.2rem;
+  font-family: "IBM Plex Sans JP", sans-serif;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--category-web);
+  position: relative;
+}
+
+.blog-post .post-content h2::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 21px;
+  position: absolute;
+  top: 8px;
+  left: 0;
+}
+
+.post-header {
+  text-align: center;
+}
+
+.post-content {
+  text-align: left;
+}
+
+.post-header,
+.post-content {
+  max-width: 800px; /* 記事エリアの最大幅を少し狭くして読みやすくする */
+  margin: 40px auto;
+  padding: 0 4vw;
+}
+
+.post-header .post-eyecatch {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.post-title {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 400;
+  margin: 0 0 10px 0;
+  line-height: 1.7;
+  font-family: "IBM Plex Sans JP", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.post-date {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 200;
+  text-align: right;
+  display: inline-block;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.04em;
+}
+
+.post-content {
+  font-size: 1.6rem;
+  line-height: 1.8;
+  text-indent: 1em;
+  letter-spacing: 0.02em;
+}
+
+.post-content p {
+  margin: 0 0 20px 0;
+  font-weight: 400;
+}
+
+.post-content figure {
+  margin: 40px 0;
+}
+
+.post-content figure img {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.post-content figcaption {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-top: 0.1em;
+}
+
+/* 記事下のナビゲーション */
+.post-navigation {
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.post-navigation a {
+  display: block;
+  padding: 10px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  color: var(--main-color);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.post-navigation a:hover {
+  background-color: var(--light-gray);
+}
+
+.post-navigation a.current {
+  background-color: var(--main-color);
+  color: white;
+  font-weight: 500;
+}
+
+.post-navigation a.current:hover {
+  background-color: var(--main-color);
+  opacity: 0.9;
+}
+
+/* ４５０ｐｘ以下調整（ブログ詳細ページ） */
+@media (max-width: 450px) {
+  /* .post-title {
+    font-size: 1.8rem;
+  } */
+  .post-content {
+    font-size: 1.5rem;
+  }
+
+  .blog-post .post-content h2 {
+    font-size: 1.9rem;
+  }
+  .blog-post .post-content h2::before {
+    top: 4px;
+  }
 }

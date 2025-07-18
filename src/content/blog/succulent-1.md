@@ -1,9 +1,10 @@
 ---
 title: "sucuulent 1"
-date: 2023-01-15
+date: 2025-07-14
 category: "succulent"
 tags: ["sucuulent", "astro", "blog"]
 description: "Astroフレームワークを使ってブログサイトを構築する手順を解説します。"
+image: "images/img-test.png"
 ---
 
 ## sucuulent 1

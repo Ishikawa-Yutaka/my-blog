@@ -41,6 +41,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 					<img src={getPath('images/profile.png')} alt="うにのイラスト" class="hero-profile">
 					<h1 class="typing"><span>う</span><span>に</span><span>の</span><span>ブ</span><span>ロ</span><span>グ</span></h1>
 				</div>
+				<div class="scrolldown"><span>Scroll</span></div>
 			</section>
 				{latestPosts.length > 0 && (
 			<section class="new">
@@ -53,7 +54,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 						{latestPosts.map((post) => (
 							<div class="swiper-slide">
 								<article class="new-article">
-									<img src={post.data.image || getPath('images/img-test.png')} alt={post.data.title}>
+									<img src={getPath(post.data.image || 'images/img-test.png')} alt={post.data.title}>
 									<div class="new-content">
 										<span class="category" data-category={post.data.category}>{categoryNames[post.data.category]?.en || post.data.category}</span>
 										<span class="date">{post.data.date.toLocaleDateString('ja-JP')}</span>
@@ -246,6 +247,72 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		}
 	}
 
+	/*=== 矢印が動いてスクロールを促す  ====*/
+
+	/*スクロールダウン全体の場所*/
+	.scrolldown{
+		/*描画位置※位置は適宜調整してください*/
+		position:absolute;
+		bottom:1%;
+		right:50%;
+		opacity: 0;
+		/*矢印の動き1秒かけて永遠にループ*/
+		animation: arrowmove 2.5s ease-in-out 4s infinite;
+	}
+
+	/*下からの距離が変化して全体が下→上→下に動く*/
+	@keyframes arrowmove{
+		0%{bottom:1%; opacity:0;}
+		20%{opacity:0.5;}
+		50%{bottom:3%; opacity:1;}
+		80%{50%{opacity:0.5;}}
+		100%{bottom:1%; opacity:0;}
+	}
+
+	/*Scrollテキストの描写*/
+	.scrolldown span{
+		/*描画位置*/
+		position: absolute;
+		left:-20px;
+		bottom:10px;
+		/*テキストの形状*/
+		color: var(--text-color);
+		font-size: 1.2rem;
+		font-weight:300;
+		font-family: "M PLUS 1", sans-serif;
+		letter-spacing: 0.1em;
+		/*縦書き設定*/
+		-ms-writing-mode: tb-rl;
+		-webkit-writing-mode: vertical-rl;
+		writing-mode: vertical-rl;
+	}
+
+	/* 矢印の描写 */
+	.scrolldown:before {
+		content: "";
+		/*描画位置*/
+		position: absolute;
+		bottom: 0;
+		right: -6px;
+		/*矢印の形状*/
+		width: 1px;
+		height: 20px;
+		background: var(--text-color);
+		transform: skewX(-31deg);
+	}
+
+	.scrolldown:after{
+		content:"";
+		/*描画位置*/
+		position: absolute;
+		bottom:0;
+		right:0;
+		/*矢印の形状*/
+		width:1px;
+		height: 50px;
+		background:var(--text-color);
+	}
+
 	.new img {
 		width: 100%;
 		min-width: 300px;
@@ -406,10 +473,25 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 	}
 
 	/* カテゴリ別のborderカラー */
-	.web .section-header a    { border-color: var(--category-web); width: 105px;}
-	.photo .section-header a  { border-color: var(--category-photo); width: 118px; }
-	.stroll .section-header a { border-color: var(--category-stroll); width: 114px;}
-	.succulent .section-header a { border-color: var(--category-succulent); width: 150px;}
+	.web .section-header a {
+		 border-color: var(--category-web);
+		 width: 105px;
+	}
+	
+	.photo .section-header a {
+		 border-color: var(--category-photo);
+		  width: 118px; 
+	}
+
+	.stroll .section-header a {
+		 border-color: var(--category-stroll); 
+		 width: 114px;
+	}
+
+	.succulent .section-header a { 
+		border-color: var(--category-succulent);
+		width: 150px;
+	 }
 
 	/* swiperのスタイル */
 	.swiper {

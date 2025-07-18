@@ -4,6 +4,7 @@ date: 2023-01-15
 category: "stroll"
 tags: ["stroll", "astro", "blog"]
 description: "Astroフレームワークを使ってブログサイトを構築する手順を解説します。"
+image: "images/img-test.png"
 ---
 
 ## stroll 1

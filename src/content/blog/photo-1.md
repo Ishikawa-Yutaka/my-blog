@@ -4,7 +4,7 @@ date: 2023-01-15
 category: "photo"
 tags: ["photo", "astro", "blog"]
 description: "Astroフレームワークを使ってブログサイトを構築する手順を解説します。"
-image: "/my-blog/images/img-test.png"
+image: "images/img-test.png"
 ---
 
 ## photo 1
