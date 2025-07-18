@@ -25,7 +25,7 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: 'ä¸
               {frontmatter.date.toLocaleDateString('ja-JP')}
             </time>
             {frontmatter.image && (
-              <img src={frontmatter.image} alt={frontmatter.title} class="post-eyecatch" />
+              <img src={getPath(frontmatter.image)} alt={frontmatter.title} class="post-eyecatch" />
             )}
           </header>
         </div>
@@ -134,6 +134,7 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: 'ä¸
   padding: 15px 0 20px;
   margin-top: 80px;
 }
+
 
 
 
