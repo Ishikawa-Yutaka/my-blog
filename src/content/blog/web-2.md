@@ -1,5 +1,5 @@
 ---
-title: '【web２】AstroでSwiperが動かない！解決策は？'
+title: 'AstroでSwiperが動かない！解決策は？'
 date: 2025-07-15
 category: 'web'
 tags: ['web', 'astro', 'blog']

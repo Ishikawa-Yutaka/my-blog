@@ -1,5 +1,5 @@
 ---
-title: 'web4 意外と知らない？HTMLの <header> タグの正しい使い方とSEO効果'
+title: '意外と知らない？HTMLの <header> タグの正しい使い方とSEO効果'
 date: 2025-07-14
 category: 'web'
 tags: ['web', 'astro', 'blog']
