@@ -102,8 +102,17 @@ import { getPath } from '../env';
     }
     
     /* デスクトップ用のナビゲーションを非表示 */
-    nav ul {
+    /* nav ul {
         display: none;
+    } */
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        list-style: none;
+        text-align: center;
+        padding: 0 4vw; 
     }
     
     /* 768px以下でハンバーガーメニューを表示 */
@@ -152,15 +161,6 @@ import { getPath } from '../env';
     /* ナビゲーションが開いている状態 */
     .nav-menu.active {
         opacity: 1;
-    }
-    
-    /* モバイル用のナビゲーションリストを表示 */
-    .nav-menu.active ul {
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-        list-style: none;
-        text-align: center;
     }
     
     .nav-menu.active li {
