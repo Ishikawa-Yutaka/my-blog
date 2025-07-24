@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 import Timeline from '../components/Timeline.astro'
 import { getPath } from '../env';
 
+// ページタイトルを定義
 const title = "About";
 ---
 
@@ -21,6 +22,7 @@ const title = "About";
         </div>
       </div>
 
+      <!-- 自己紹介・経歴のセクション -->
       <div class="introduction-wrap fuwa">
         <section class="introduction">
           <h3>プロフィール</h3>
@@ -30,6 +32,7 @@ const title = "About";
 
         <section class="experience">
           <h3>経歴</h3>
+          <!-- Timelineコンポーネントで経歴を表示 -->
           <Timeline date="2024-2025年" title="副業を始める">
             <p>副業で地元企業のWebサイト制作を始める</p>
           </Timeline>
@@ -46,6 +49,26 @@ const title = "About";
     </div>
   <Footer slot="footer" />
 </Layout>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const timelineItems = document.querySelectorAll('.introduction-wrap');
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    timelineItems.forEach((item) => {
+      observer.observe(item);
+    });
+  });
+</script>
 
 <style>
 /* プロフィール */

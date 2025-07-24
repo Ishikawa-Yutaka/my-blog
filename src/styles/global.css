@@ -57,7 +57,7 @@ h2,
 nav {
   font-style: normal;
   text-decoration: none;
-  font-family: "M PLUS 1", sans-serif;
+  font-family: 'M PLUS 1', sans-serif;
   font-optical-sizing: auto;
 }
 
@@ -66,7 +66,7 @@ p,
 span,
 button,
 a {
-  font-family: "IBM Plex Sans JP", sans-serif;
+  font-family: 'IBM Plex Sans JP', sans-serif;
   font-style: normal;
 }
 
@@ -88,42 +88,42 @@ code {
 }
 
 /* カテゴリー別の下線色 */
-.blog-post .post-content[data-category="web"] h2 {
+.blog-post .post-content[data-category='web'] h2 {
   border-bottom-color: var(--category-web);
 }
 
-.blog-post .post-content[data-category="photo"] h2 {
+.blog-post .post-content[data-category='photo'] h2 {
   border-bottom-color: var(--category-photo);
 }
 
-.blog-post .post-content[data-category="stroll"] h2 {
+.blog-post .post-content[data-category='stroll'] h2 {
   border-bottom-color: var(--category-stroll);
 }
 
-.blog-post .post-content[data-category="succulent"] h2 {
+.blog-post .post-content[data-category='succulent'] h2 {
   border-bottom-color: var(--category-succulent);
 }
 
 /* カテゴリー別のh2アイキャッチ色 */
-.blog-post .post-content[data-category="web"] h2::before {
+.blog-post .post-content[data-category='web'] h2::before {
   background-color: var(--category-web);
 }
 
-.blog-post .post-content[data-category="photo"] h2::before {
+.blog-post .post-content[data-category='photo'] h2::before {
   background-color: var(--category-photo);
 }
 
-.blog-post .post-content[data-category="stroll"] h2::before {
+.blog-post .post-content[data-category='stroll'] h2::before {
   background-color: var(--category-stroll);
 }
 
-.blog-post .post-content[data-category="succulent"] h2::before {
+.blog-post .post-content[data-category='succulent'] h2::before {
   background-color: var(--category-succulent);
 }
 
 /* 投稿一覧、category一覧pega　　*/
 .post-list {
-  font-family: "M PLUS 1", sans-serif;
+  font-family: 'M PLUS 1', sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
   text-align: center;
@@ -134,14 +134,14 @@ code {
 .post-list span {
   font-size: 1.6rem;
   font-weight: 200;
-  font-family: "M PLUS 1", sans-serif;
+  font-family: 'M PLUS 1', sans-serif;
   display: inline-block;
   position: relative;
   top: 0px;
 }
 
 .post-list span::before {
-  content: "";
+  content: '';
   width: 35px;
   height: 1px;
   background-color: var(--text-color);
@@ -160,7 +160,7 @@ code {
 /* ブログ詳細ページのh2スタイル */
 .blog-post .post-content h2 {
   font-size: 2.2rem;
-  font-family: "IBM Plex Sans JP", sans-serif;
+  font-family: 'IBM Plex Sans JP', sans-serif;
   font-weight: 500;
   color: var(--text-color);
   margin-top: 60px;
@@ -171,7 +171,7 @@ code {
 }
 
 .blog-post .post-content h2::before {
-  content: "";
+  content: '';
   display: block;
   width: 5px;
   height: 21px;
@@ -209,7 +209,7 @@ code {
   font-weight: 400;
   margin: 0 0 10px 0;
   line-height: 1.7;
-  font-family: "IBM Plex Sans JP", sans-serif;
+  font-family: 'IBM Plex Sans JP', sans-serif;
   letter-spacing: 0.01em;
 }
 
@@ -263,7 +263,9 @@ code {
   position: relative;
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
 }
 
 .fuwa.fade-in {

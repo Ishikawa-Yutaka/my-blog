@@ -1,10 +1,10 @@
 ---
-title: "【stroll4】ここにタイトルが入ります。"
+title: '【stroll4】ここにタイトルが入ります。'
 date: 2025-02-15
-category: "stroll"
-tags: ["stroll", "astro", "blog"]
-description: "【stroll4】ここにタイトルが入ります。"
-image: "images/img-test.png"
+category: 'stroll'
+tags: ['stroll', 'astro', 'blog']
+description: '【stroll4】ここにタイトルが入ります。'
+image: 'images/img-test.png'
 ---
 
 ## ここに h2 タイトルが入ります。

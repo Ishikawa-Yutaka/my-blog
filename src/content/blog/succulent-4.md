@@ -1,10 +1,10 @@
 ---
-title: "【sucuulent4】ここにタイトルが入ります。"
+title: '【sucuulent4】ここにタイトルが入ります。'
 date: 2025-02-15
-category: "succulent"
-tags: ["sucuulent", "astro", "blog"]
-description: "【sucuulent4】ここにタイトルが入ります。"
-image: "images/img-test.png"
+category: 'succulent'
+tags: ['sucuulent', 'astro', 'blog']
+description: '【sucuulent4】ここにタイトルが入ります。'
+image: 'images/img-test.png'
 ---
 
 ## ここに h2 タイトルが入ります。

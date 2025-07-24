@@ -8,7 +8,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
 
 // 動的ルーティングのための記事取得
 export async function getStaticPaths() {
+  // blogコレクションから全記事を取得
   const blogPosts = await getCollection('blog');
+  // 各記事ごとにパスとpropsを生成
   return blogPosts.map(post => ({
     params: { 
       category: post.data.category,
@@ -18,10 +20,14 @@ export async function getStaticPaths() {
   }));
 }
 
+// propsから記事データを取得
 const { post } = Astro.props;
+// Markdown本文をレンダリング
 const { Content } = await post.render();
 ---
+<!-- Layoutに記事タイトルを渡すことで<title>とh1を連動 -->
 <Layout title={post.data.title}>
+  <!-- 記事詳細レイアウトにfrontmatterを渡す -->
   <BlogPostLayout frontmatter={post.data}>
     <Content />
   </BlogPostLayout>

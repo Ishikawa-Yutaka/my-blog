@@ -1,10 +1,10 @@
 ---
-title: "【web２】AstroでSwiperが動かない！解決策は？"
+title: '【web２】AstroでSwiperが動かない！解決策は？'
 date: 2025-07-15
-category: "web"
-tags: ["web", "astro", "blog"]
-description: "AstroでSwiperが動かない！解決策は？"
-image: "images/img-test.png"
+category: 'web'
+tags: ['web', 'astro', 'blog']
+description: 'AstroでSwiperが動かない！解決策は？'
+image: 'images/img-test.png'
 ---
 
 ## Swiper が動かない、なぜ？

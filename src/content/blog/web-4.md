@@ -1,10 +1,10 @@
 ---
-title: "web4 意外と知らない？HTMLの <header> タグの正しい使い方とSEO効果"
+title: 'web4 意外と知らない？HTMLの <header> タグの正しい使い方とSEO効果'
 date: 2025-07-14
-category: "web"
-tags: ["web", "astro", "blog"]
-description: "意外と知らない？HTMLの <header> タグの正しい使い方とSEO効果"
-image: "images/img-test.png"
+category: 'web'
+tags: ['web', 'astro', 'blog']
+description: '意外と知らない？HTMLの <header> タグの正しい使い方とSEO効果'
+image: 'images/img-test.png'
 ---
 
 ## `<header>` タグは 1 ページ内に複数設置できる！

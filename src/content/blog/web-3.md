@@ -1,10 +1,10 @@
 ---
-title: "web3 Astroで投稿画像が表示されない！？原因と解決メモ"
+title: 'web3 Astroで投稿画像が表示されない！？原因と解決メモ'
 date: 2025-07-20
-category: "web"
-tags: ["web", "astro", "blog"]
-description: "Astroで投稿画像が表示されない！？原因と解決メモ"
-image: "images/img-test.png"
+category: 'web'
+tags: ['web', 'astro', 'blog']
+description: 'Astroで投稿画像が表示されない！？原因と解決メモ'
+image: 'images/img-test.png'
 ---
 
 ## あれ、ブログの画像が表示されない！？
