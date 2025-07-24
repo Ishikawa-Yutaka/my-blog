@@ -3,6 +3,7 @@
 import { SITE_TITLE } from '../consts'
 import '../styles/global.css'
 import { getPath } from '../env';
+const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -10,7 +11,7 @@ import { getPath } from '../env';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{SITE_TITLE}</title>
+    <title>{title ? `${title} | ${SITE_TITLE}` : SITE_TITLE}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

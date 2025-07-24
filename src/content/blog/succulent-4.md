@@ -1,10 +1,9 @@
 ---
-title: "【stroll１】ここにタイトルが入ります。"
-date: 2023-01-15
-category: "stroll"
-tags: ["stroll", "astro", "blog"]
-description: "【stroll１】ここにタイトルが入ります。"
-date: 2023-01-15"
+title: "【sucuulent4】ここにタイトルが入ります。"
+date: 2025-02-15
+category: "succulent"
+tags: ["sucuulent", "astro", "blog"]
+description: "【sucuulent4】ここにタイトルが入ります。"
 image: "images/img-test.png"
 ---
 

@@ -11,33 +11,33 @@ type Props = {
 const {title,description} = Astro.props
 ---
 
-<Head/>
+<Head title={title}/>
 	<body>
 		<HeaderNavi />
         <!-- ページの内容が入る -->
 		<slot /> 
 		<Footer />
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				new Swiper('.swiper', {
-				navigation: {
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev',
-				},
-				loop: true,
-				speed: 2000, // トランジション速度を1秒に設定（よりスムーズ）
-				effect: 'slide', // スライドエフェクト
-				autoplay: {
-					delay: 3000, // 2秒間隔で自動スライド
-					disableOnInteraction: false, // ユーザーが操作しても自動スライドを停止しない
-					pauseOnMouseEnter: true, // マウスホバーでも停止
-					stopOnLastSlide: false, // 最後のスライドでも停止しない
-				},
-				pagination: {
-					el: '.swiper-pagination',
-					},
-				});
-			});
-		</script>
 	</body>
 </html>
+
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		//as NodeListOf<HTMLElement>で型を指定（typescript）
+		const timelineItems = document.querySelectorAll('.fuwa') as NodeListOf<HTMLElement>
+		//IntersectionObserverで要素が画面に入った時にfade-inクラスを追加
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if(entry.isIntersecting){
+					entry.target.classList.add('fade-in');
+					//要素が画面に入ったらobserverでの監視を解除
+					observer.unobserve(entry.target);
+				}
+			});
+			{ threshold: 0.5 }
+		});
+		//各要素にobserverを設定
+		timelineItems.forEach((item) => {
+			observer.observe(item);
+		});
+	});
+  </script>

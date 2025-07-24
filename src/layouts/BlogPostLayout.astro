@@ -17,7 +17,11 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: '�
     <article class="blog-post">
         <div class="header-wrapper">
           <header class="post-header">
-            <div class="category-info" data-category={frontmatter.category}>{category.en}<span>- {category.ja}</span></div>
+            <a class="category-link" href={getPath(`blog/${frontmatter.category}`)}>
+              <div class="category-info" data-category={frontmatter.category}>
+                {category.en}<span>- {category.ja}</span>
+              </div>
+            </a>
             <h1 class="post-title">
               {frontmatter.title}
             </h1>
@@ -70,6 +74,10 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: '�
     color: var(--category-web);
   }
 
+  .category-link{
+    display: inline-block;
+  }
+
   /* カテゴリー別の色分け */
   .category-info[data-category="web"]::first-letter {
     color: var(--category-web);
@@ -115,11 +123,11 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: '�
 
   .post-navigation a {
     color: var(--text-color);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 300;
     display: block;
     padding: 10px 0 5px;
-    margin: 0 20px;
+    margin: 0 15px;
     border-bottom: 1px solid transparent;
     color: var(--text-color);
     text-decoration: none;

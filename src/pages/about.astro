@@ -5,45 +5,45 @@ import HeaderNavi from '../components/HeaderNavi.astro';
 import Footer from '../components/Footer.astro';
 import Timeline from '../components/Timeline.astro'
 import { getPath } from '../env';
+
+const title = "About";
 ---
 
-<Layout title="プロフィール">
+<Layout title={title}>
   <HeaderNavi slot="header" />
+    <div class="page-container">
+      <h1 class="page-title">{title}</h1>
+      <div class="profile">
+        <img src={getPath('images/profile.png')} alt="{myName}" class="profile-image">
+        <div class="profile-info">
+          <h2 class="profile-name">石川 裕</h2>
+          <p class="job-title">ishikawa yutaka</p>
+        </div>
+      </div>
 
-  <div class="page-container">
-		<h1 class="page-title">About</h1>
-		<div class="profile">
-			<img src={getPath('images/profile.png')} alt="{myName}" class="profile-image">
-			<div class="profile-info">
-				<h2 class="profile-name">石川 裕</h2>
-				<p class="job-title">ishikawa yutaka</p>
-			</div>
-		</div>
+      <div class="introduction-wrap fuwa">
+        <section class="introduction">
+          <h3>プロフィール</h3>
+          <p>1977年生まれ　島根県出身</p>
+          <p>グループ企業のホームーページ担当を経て、2024年から個人でWebサイト制作を行っている</p>
+        </section>
 
-    <div class="introduction-wrap">
-      <section class="introduction">
-        <h3>プロフィール</h3>
-        <p>1977年生まれ　島根県出身</p>
-        <p>グループ企業のホームーページ担当を経て、2024年から個人でWebサイト制作を行っている</p>
-      </section>
+        <section class="experience">
+          <h3>経歴</h3>
+          <Timeline date="2024-2025年" title="副業を始める">
+            <p>副業で地元企業のWebサイト制作を始める</p>
+          </Timeline>
 
-      <section class="experience">
-        <h3>経歴</h3>
-        <Timeline date="2024-2025年" title="副業を始める">
-          <p>副業で地元企業のWebサイト制作を始める</p>
-        </Timeline>
+          <Timeline date="2019-2023年" title="企業のホームーページ担当">
+            <p>グループ企業のホームーページの制作と管理を行う</p>
+          </Timeline>
 
-        <Timeline date="2019-2023年" title="企業のホームーページ担当">
-          <p>グループ企業のホームーページの制作と管理を行う</p>
-        </Timeline>
-
-        <Timeline date="2018-2019年" title="ホームーページ制作を学ぶ">
-          <p>ホームーページを制作を学ぶ</p>
-        </Timeline>
-      </section>
+          <Timeline date="2018-2019年" title="ホームーページ制作を学ぶ">
+            <p>ホームーページを制作を学ぶ</p>
+          </Timeline>
+        </section>
+      </div>
     </div>
-	</div>
-
   <Footer slot="footer" />
 </Layout>
 
@@ -154,21 +154,7 @@ import { getPath } from '../env';
       margin-bottom: 1.5rem;
       }
 
-    /* フェードインアニメーション*/
-    .introduction-wrap{
-        position: relative;
-        opacity: 0;
-        transform: translateY(40px);
-        transition:
-        opacity 0.7s ease-out,
-        transform 0.7s ease-out;
-    }
-   
-    .introduction-wrap.fade-in {
-        opacity:1;
-        transform: translateY(0);
-        transition-delay: 0.5s; 
-      }
+    
    }
 
    @media (max-width:450px){
@@ -178,24 +164,3 @@ import { getPath } from '../env';
     }
 </style>
 
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-      //as NodeListOf<HTMLElement>で型を指定（typescript）
-      const timelineItems = document.querySelectorAll('.introduction-wrap') as NodeListOf<HTMLElement>
-      //IntersectionObserverで要素が画面に入った時にfade-inクラスを追加
-      const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-              if(entry.isIntersecting){
-                  entry.target.classList.add('fade-in');
-                  //要素が画面に入ったらobserverでの監視を解除
-                  observer.unobserve(entry.target);
-              }
-          });
-          { threshold: 0.5 }
-      });
-      //各要素にobserverを設定
-      timelineItems.forEach((item) => {
-          observer.observe(item);
-      });
-  });
-</script>

@@ -32,7 +32,3 @@ image: "images/img-test.png"
 
 これから学習はさらに、Node.js、TypeScript、React、Next.js と続き、分からないことも増えていくと思います。  
 それでもめげずに、生成 AI の力や先生方の助言を借りながら、一つ一つ疑問を解決して、着実に学習を進めていきたいと思います。
-
-<img src="/my-blog/images/test.jpg" alt="テスト画像">
-
-![テスト画像](/my-blog/images/test.jpg)

@@ -153,6 +153,7 @@ code {
 
 .post-wrapper {
   max-width: 1500px;
+  min-height: 600px;
   margin: auto;
 }
 
@@ -257,11 +258,22 @@ code {
   margin-top: 0.1em;
 }
 
+/* フェードインアニメーション*/
+.fuwa {
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.fuwa.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
 /* ４５０ｐｘ以下調整（ブログ詳細ページ） */
 @media (max-width: 450px) {
-  /* .post-title {
-    font-size: 1.8rem;
-  } */
   .post-content {
     font-size: 1.5rem;
   }

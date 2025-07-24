@@ -8,9 +8,11 @@ import ArticleGrid from '../../components/ArticleGrid.astro';
 const posts = await getCollection('blog');
 
 posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+
+const title = "ブログ一覧";
 ---
 
-<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<Layout title={title}>
     <h1 class="post-list">全ての投稿<br/><span>all posts</span></h1>
     <div class="post-wrapper">
         <ArticleGrid posts={posts} />

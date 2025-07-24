@@ -32,9 +32,11 @@ const categoryJaMap = {
   succulent: "多肉植物"
 };
 
+const title = `${categoryJaMap[category] ?? category} の投稿一覧`;
+
 ---
 
-<Layout>
+<Layout title={title}>
     <h1 class={`post-list ${category}`}>{category}の投稿<br/><span>{categoryJaMap[category] ?? category}</span></h1>
     <div class="post-wrapper">
         <ArticleGrid posts={posts} />

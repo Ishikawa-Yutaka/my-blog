@@ -77,7 +77,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			</section>
 				)}
 
-			<section class="category-section web">
+			<section class="category-section web fuwa">
 				<header class="section-header">
 					<h2>Web<span>- ウェブ</span></h2>
 					<a href={getPath('blog/web')}><span>Webの投稿へ</span></a>
@@ -87,7 +87,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 				</div>
 			</section>
 
-			<section class="category-section photo">
+			<section class="category-section photo fuwa">
 				<header class="section-header">
 					<h2>Photo<span>- 写真</span></h2>
 					<a href={getPath('blog/photo')}>Photoの投稿へ</a>
@@ -97,7 +97,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 				</div>
 			</section>
 
-			<section class="category-section stroll">
+			<section class="category-section stroll fuwa">
 				<header class="section-header">
 					<h2>Stroll<span>- 散歩</span></h2>
 					<a href={getPath('blog/stroll')}>Strollの投稿へ</a>
@@ -107,7 +107,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 				</div>
 			</section>
 
-			<section class="category-section succulent">
+			<section class="category-section succulent fuwa">
 				<header class="section-header">
 					<h2>Succulent<span>- 多肉植物</span></h2>
 					<a href={getPath('blog/succulent')}>Succulentの投稿へ</a>
@@ -422,9 +422,9 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		/*絶対配置で下線の位置を決める*/
 		position: absolute;
 		top:50%;
-		right:-22px;
+		right:-17px;
 		/*下線の形状*/
-		width:30px;
+		width:24px;
 		height:1px;
 		background:var(--accent-color);
 		/*アニメーションの指定*/
@@ -435,11 +435,10 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		content:"";
 		/*絶対配置で矢印の位置を決める*/
 		position: absolute;
-	    top: 16%;
-    	right: -17px;
-		/*矢印の形状*/
-		width:1px;
-		height:12px;
+		top: 25%;
+		right: -13px;
+		width: 1px;
+		height: 8px;
 		background:var(--accent-color);
 		transform:skewX(45deg);
 		/*アニメーションの指定*/
@@ -448,11 +447,11 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 
 	/*hoverした際の移動*/
 	.btn:hover::before{
-		right:-30px;
+		right:-25px;
 	}
 
 	.btn:hover::after{
-		right:-25px;
+		right:-20px;
 	}
 
 	{/* 各categoryカードセクション */}
@@ -514,7 +513,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		font-style: normal;
 		font-weight: 300;
 		color: var(--text-color);
-		font-size: 1.4rem;
+		font-size: 1.5rem;
 		letter-spacing: 0.05em;
 		padding: 2px 0;
 		display:inline-block;
@@ -711,3 +710,25 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 }
 </style>
 
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		new Swiper('.swiper', {
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		loop: true,
+		speed: 2000, // トランジション速度を2秒に設定（よりスムーズ）
+		effect: 'slide', // スライドエフェクト
+		autoplay: {
+			delay: 2000, // 2秒間隔で自動スライド
+			disableOnInteraction: false, // ユーザーが操作しても自動スライドを停止しない
+			pauseOnMouseEnter: true, // マウスホバーでも停止
+			stopOnLastSlide: false, // 最後のスライドでも停止しない
+		},
+		pagination: {
+			el: '.swiper-pagination',
+			},
+		});
+	});
+</script>

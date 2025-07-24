@@ -12,7 +12,7 @@ image: "images/img-test.png"
 ブログサイト制作中、AI に HTML のコード生成を依頼したところ、`<article>`の中に `<header>`が使われているのを見て「えっ？」と疑問に思い、調べてみました。
 すると、`<header>`はページ全体のヘッダーだけでなく、`<article>`、`<nav>`、`<section>`などの内部でも、それぞれのセクション用のヘッダーとして使用できることが分かりました。
 （これ、意外と知らなかったのは私だけでしょうか？）  
-[MDN header のページへ](https://developer.mozilla.org/ja/docs/Web/HTML/Element/header)
+[MDN header のページリンク](https://developer.mozilla.org/ja/docs/Web/HTML/Element/header)
 
 ## `<header>`を複数設置するメリットは？
 
