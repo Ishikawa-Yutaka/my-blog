@@ -25,7 +25,7 @@ import { getPath } from '../env';
     </div>
 </header>
 
-<style>
+<!-- <style>
     .header {
         display: flex;
         justify-content: space-between;
@@ -258,6 +258,200 @@ import { getPath } from '../env';
         width: 35%;
     }
   }
+</style> -->
+<style>
+/* === 初期状態（PC表示）=== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4vw;
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+  background-color: #fff;
+  box-shadow: 0px 2px 6px #f4f4f4;
+}
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.logo img {
+  width: 80px;
+  position: relative;
+  z-index: 100000;
+}
+.nav-menu ul {
+  display: flex;
+  gap: 1.8em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.7rem;
+  font-weight: 200;
+  position: relative;
+  transition: color 0.4s;
+}
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--accent-color);
+  transition: scale 0.4s;
+  scale: 0;
+}
+.nav-menu a:hover::after {
+  scale: 1;
+}
+.nav-menu a:hover {
+  color: var(--accent-color);
+}
+
+/* === ハンバーガーメニュー関連は初期状態では非表示 === */
+.openbtn { display: none; }
+.circle { display: none; }
+
+
+/* === 768px以下の対応（ここが重要）=== */
+@media (max-width: 768px) {
+  /* --- ヘッダーのレイアウト調整 --- */
+  .header {
+    display: block; /* display:flex だとロゴが左に寄らないため */
+  }
+
+  /* --- デスクトップ用メニューは非表示 --- */
+  .nav-menu {
+    display: none;
+    text-align: center;
+  }
+
+  /* --- ここからがメニューパネル全体の制御 --- */
+  .menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex; /* 中のナビゲーションを中央寄せにするため */
+    align-items: center;
+    justify-content: center;
+    z-index: 2; /* logoやopenbtnよりは下、通常コンテンツよりは上 */
+    
+    /* display:none をやめ、visibilityとopacityで制御 */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s, visibility 0.4s;
+  }
+
+  /* --- メニューが開いた状態 --- */
+  .menu-container.panel-open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* --- 開いたメニュー内のナビゲーション --- */
+  /* .nav-menu.active というクラスはもう使わない */
+  .menu-container.panel-open .nav-menu {
+    display: block; /* 再表示させる */
+    opacity: 1; /* nav-menu自体はアニメーションさせないので常に1 */
+    z-index: 100001; /* 円より手前に来るように */
+  }
+  
+  .menu-container.panel-open .nav-menu ul {
+    flex-direction: column;
+    gap: 1em;
+    padding: 0 4vw;
+  }
+  .menu-container.panel-open .nav-menu li {
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--usually-gray);
+  }
+  .menu-container.panel-open .nav-menu li:last-child {
+    border-bottom: none;
+  }
+  .menu-container.panel-open .nav-menu a {
+    color: var(--text-color);
+    display: block;
+    padding: 1.5rem;
+    font-size: 2rem;
+  }
+  .menu-container.panel-open .nav-menu a:hover {
+    color: var(--main-color);
+  }
+
+
+  /* --- 背景の円のアニメーション --- */
+  .circle {
+    display: block; /* 表示させる */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: var(--main-color);
+    border-radius: 50%;
+    scale: 0;
+    transition: scale 1s; /* アニメーション速度を調整 */
+    z-index: 100000;
+  }
+  .menu-container.panel-open .circle {
+    scale: 28;
+  }
+
+  /* --- ハンバーガーボタン --- */
+  .openbtn {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background: #fff;
+    right: 4vw;
+    top: 9px;
+    z-index: 100002; /* 円やメニューより手前 */
+    transition: background 0.4s;
+  }
+  .openbtn.active {
+    background: var(--main-color);
+  }
+  .openbtn span {
+    display: inline-block;
+    transition: all 0.7s ease;
+    position: absolute;
+    left: 13px;
+    height: 2px;
+    background-color: var(--text-color);
+  }
+  .openbtn span:nth-of-type(1) {
+    top: 22px;
+    width: 50%;
+  }
+  .openbtn span:nth-of-type(2) {
+    top: 29px;
+    width: 30%;
+  }
+  .openbtn.active span:nth-of-type(1) {
+    top: 20px;
+    left: 16px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 35%;
+  }
+  .openbtn.active span:nth-of-type(2) {
+    top: 32px;
+    left: 16px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 35%;
+  }
+}
 </style>
 
 <script>
