@@ -34,138 +34,101 @@ const category = categoryNames[frontmatter.category] || { en: 'Unknown', ja: '�
       </div>
 
       <nav class="post-navigation">
-        <a href="/my-blog">Topページへ</a>
-        <a href="/my-blog/blog" class={frontmatter.category === 'web' ? 'current' : ''}>Web 一覧へ</a>
-        <a href="/my-blog/blog" class={frontmatter.category === 'photo' ? 'current' : ''}>Photo一覧へ</a>
-        <a href="/my-blog/blog" class={frontmatter.category === 'stroll' ? 'current' : ''}>Stroll一覧へ</a>
-        <a href="/my-blog/blog" class={frontmatter.category === 'succulent' ? 'current' : ''}>Succulents 一覧へ</a>
+        <a href={getPath('blog/web')} class={frontmatter.category === 'web' ? 'current' : ''}>Web</a>
+        <a href={getPath('blog/photo')} class={frontmatter.category === 'photo' ? 'current' : ''}>Photo</a>
+        <a href={getPath('blog/stroll')} class={frontmatter.category === 'stroll' ? 'current' : ''}>Stroll</a>
+        <a href={getPath('blog/succulent')} class={frontmatter.category === 'succulent' ? 'current' : ''}>Succulent</a>
       </nav>
     </article>
   </main>
 
 
-
-
-
-
-
-
-
-<!-- 
-<BaseLayout title={frontmatter.title}> -->
-    <!-- <slot name="header" slot="header" />
-
-    <article>
-        <h1>{frontmatter.title}</h1>
-        <p class="date">投稿日: {new Date(frontmatter.date).toLocaleDateString('ja-JP')}</p>
-
-        <div class="tags">
-            {frontmatter.tags.map((tag) => (
-                <span class="tag">{tag}</span>
-            ))}
-        </div>
-
-        <div class="content"> -->
-            <!-- <slot /> マークダウンコンテンツがここに入る -->
-        <!-- </div>
-    </article> -->
-
-    <!-- <slot name="footer" slot="footer" />
-</BaseLayout> -->
-
 <style>
-/* style.css にこの部分を追記 */
+/* ブログ詳細ページ用のスタイル */
+  .category-info {
+    font-family: "M PLUS 1", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 100;
+    letter-spacing: 0.04em;
+    color: var(--text-color);
+    display: inline-block;
+    margin-bottom: 0.5em;
+    position: fixed;
+    top: 87px;
+    left: 4vw;
+    z-index: 10000;
+    height: 49px;
+    padding: 0 3px;
+    background-color: rgba(255, 255, 255, 0.7); 
+    /* 背景を10px分ぼかす */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px); /* Safari向けのベンダープレフィックス */
+  }
 
-/* ===============================================
-   ブログ詳細ページ用のスタイル
-   =============================================== */
+  .category-info::first-letter{
+    font-size: 3rem;
+    color: var(--category-web);
+  }
 
-.category-info {
-  font-family: "M PLUS 1", sans-serif;
-  font-size: 2.5rem;
-  font-weight: 100;
-  letter-spacing: 0.04em;
-  color: var(--text-color);
-  display: inline-block;
-  margin-bottom: 0.5em;
-  position: fixed;
-  top: 87px;
-  left: 4vw;
-  z-index: 10000;
-  height: 49px;
-  padding: 0 3px;
-  background-color: rgba(255, 255, 255, 0.7); 
-  /* 背景を10px分ぼかす */
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px); /* Safari向けのベンダープレフィックス */
-}
+  /* カテゴリー別の色分け */
+  .category-info[data-category="web"]::first-letter {
+    color: var(--category-web);
+  }
 
-.category-info::first-letter{
-  font-size: 3rem;
-  color: var(--category-web);
-}
+  .category-info[data-category="photo"]::first-letter {
+    color: var(--category-photo);
+  }
 
-/* カテゴリー別の色分け */
-.category-info[data-category="web"]::first-letter {
-  color: var(--category-web);
-}
+  .category-info[data-category="stroll"]::first-letter {
+    color: var(--category-stroll);
+  }
 
-.category-info[data-category="photo"]::first-letter {
-  color: var(--category-photo);
-}
+  .category-info[data-category="succulent"]::first-letter {
+    color: var(--category-succulent);
+  }
 
-.category-info[data-category="stroll"]::first-letter {
-  color: var(--category-stroll);
-}
+  .category-info span {
+    font-size: 1.3rem;
+    vertical-align: middle;
+    margin-left: 0.5em;
+  }
 
-.category-info[data-category="succulent"]::first-letter {
-  color: var(--category-succulent);
-}
+  /* 記事本体 */
+  .header-wrapper{
+    background-color: var(--main-color);
+    padding: 15px 0 20px;
+    margin-top: 80px;
+  }
 
-.category-info span {
-  font-size: 1.3rem;
-  vertical-align: middle;
-  margin-left: 0.5em;
-}
+  .post-navigation a{
+   
+  }
 
-/* 記事本体 */
-.header-wrapper{
-  background-color: var(--main-color);
-  padding: 15px 0 20px;
-  margin-top: 80px;
-}
+  /* 記事下のナビゲーション */
+  .post-navigation {
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
 
+  .post-navigation a {
+    color: var(--text-color);
+    font-size: 1.3rem;
+    font-weight: 300;
+    display: block;
+    padding: 10px 0 5px;
+    margin: 0 20px;
+    border-bottom: 1px solid transparent;
+    color: var(--text-color);
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
 
-
-
-
-
-
-
-
-    /* article {
-        margin: 2rem 0;
-    }
-    h1 {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;t
-    }
-    .date {
-        color: #666;
-        margin-bottom: 1rem;
-    }
-    .tags {
-        display: flex;
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-    }
-    .tag {
-        background-color: #f0f0f0;
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-        font-size: 0.85rem;
-    }
-    .content {
-        line-height: 1.8;
-    } */
+  .post-navigation a:hover {
+    opacity: 0.5;
+  }
+  
 </style>

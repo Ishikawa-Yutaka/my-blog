@@ -53,14 +53,16 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 						{/* <!-- Slides --> */}
 						{latestPosts.map((post) => (
 							<div class="swiper-slide">
-								<article class="new-article">
-									<img src={getPath(post.data.image || 'images/img-test.png')} alt={post.data.title}>
-									<div class="new-content">
-										<span class="category" data-category={post.data.category}>{categoryNames[post.data.category]?.en || post.data.category}</span>
-										<span class="date">{post.data.date.toLocaleDateString('ja-JP')}</span>
-										<h2>{post.data.title}</h2>
-									</div>
-								</article>
+								<a href={`/my-blog/blog/${post.data.category}/${post.slug}`}>
+									<article class="new-article">
+										<img src={getPath(post.data.image || 'images/img-test.png')} alt={post.data.title}>
+										<div class="new-content">
+											<span class="category" data-category={post.data.category}>{categoryNames[post.data.category]?.en || post.data.category}</span>
+											<span class="date">{post.data.date.toLocaleDateString('ja-JP')}</span>
+											<h2>{post.data.title}</h2>
+										</div>
+									</article>
+								</a>
 							</div>
 						))}
 					</div>
@@ -70,7 +72,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 				</div>
 
 				<div class="btn-container">
-					<a href="/my-blog/blog" class="btn">すべての投稿を見る</a>
+					<a href={getPath('blog')} class="btn">すべての投稿を見る</a>
 				</div>
 			</section>
 				)}
@@ -78,7 +80,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			<section class="category-section web">
 				<header class="section-header">
 					<h2>Web<span>- ウェブ</span></h2>
-					<a href="/my-blog/blog">Web一覧へ</a>
+					<a href={getPath('blog/web')}><span>Webの投稿へ</span></a>
 				</header>
 				<div class="category-section-bg">
 					<ArticleGrid posts={postsByCategory.web} categoryName="Web" />
@@ -88,7 +90,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			<section class="category-section photo">
 				<header class="section-header">
 					<h2>Photo<span>- 写真</span></h2>
-					<a href="/my-blog/blog">Photo一覧へ</a>
+					<a href={getPath('blog/photo')}>Photoの投稿へ</a>
 				</header>
 				<div class="category-section-bg">
 					<ArticleGrid posts={postsByCategory.photo} categoryName="Photo" />
@@ -98,7 +100,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			<section class="category-section stroll">
 				<header class="section-header">
 					<h2>Stroll<span>- 散歩</span></h2>
-					<a href="/my-blog/blog">Stroll一覧へ</a>
+					<a href={getPath('blog/stroll')}>Strollの投稿へ</a>
 				</header>
 				<div class="category-section-bg">
 					<ArticleGrid posts={postsByCategory.stroll} categoryName="Stroll" />
@@ -108,7 +110,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			<section class="category-section succulent">
 				<header class="section-header">
 					<h2>Succulent<span>- 多肉植物</span></h2>
-					<a href="/my-blog/blog">Succulent一覧へ</a>
+					<a href={getPath('blog/succulent')}>Succulentの投稿へ</a>
 				</header>
 				<div class="category-section-bg">
 					<ArticleGrid posts={postsByCategory.succulent} categoryName="Succulent" />
@@ -122,7 +124,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			margin-top: 0;
 		}
 		
-		/* ヒーローセクション (NEW) */
+	{/* ヒーローセクション (NEW) */}
 	.hero {
 		padding: 120px 0 100px;
 		text-align: center;
@@ -158,7 +160,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		animation: uniDropIn 0.15s ease-out 1.2s forwards;
 	}
 	
-	/* うにが落ちてくるアニメーション */
+	{/* うにが落ちてくるアニメーション */}
 	@keyframes uniDropIn {
 		0% {
 			transform: translate(14px, -500px);
@@ -170,7 +172,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		}
 	}
 
-	/* タイトル文字が現れるアニメーション */
+	{/* タイトル文字が現れるアニメーション */}
 	.typing span {
 		opacity: 0;
 		display: inline-block;
@@ -202,7 +204,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		animation: logoDropIn 1s cubic-bezier(.7,0,.3,1) 1.5s forwards;
 	}
 
-	/* ロゴが落ちてくるアニメーション */
+	{/* ロゴが落ちてくるアニメーション */}
 	@keyframes logoDropIn {
 	0% {
 			transform: translate(0px, -500px) scaleX(1) scaleY(1);
@@ -247,16 +249,13 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		}
 	}
 
-	/*=== 矢印が動いてスクロールを促す  ====*/
-
+	{/* 矢印が動いてスクロールを促すアニメーション */}
 	/*スクロールダウン全体の場所*/
 	.scrolldown{
-		/*描画位置※位置は適宜調整してください*/
 		position:absolute;
 		bottom:1%;
 		right:50%;
 		opacity: 0;
-		/*矢印の動き1秒かけて永遠にループ*/
 		animation: arrowmove 2.5s ease-in-out 4s infinite;
 	}
 
@@ -313,6 +312,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		background:var(--text-color);
 	}
 
+	{/* newセクション */}
 	.new img {
 		width: 100%;
 		min-width: 300px;
@@ -354,7 +354,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		border-radius: 50px;
 	}
 
-	/* カテゴリー別の背景色 */
+	{/* カテゴリー別の背景色 */}
 	.new-content .category[data-category="web"] {
 		background-color: var(--category-web);
 	}
@@ -381,6 +381,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 	.new-content h2 {
 		font-size: 2rem;
 		font-family: "IBM Plex Sans JP", sans-serif;
+		color: var(--text-color);
 		margin: 20px 0;
 		font-weight: 500;
 		line-height: 1.6;
@@ -388,26 +389,73 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 
 	}
 
-	.btn-container a {
-		display: block;
+	.btn-container{
 		text-align: center;
+	}
+
+	.btn {
+		position: relative;
+		display: inline-block;
+		text-align: center;
+		text-decoration: none;
 		font-size: 1.8rem;
 		font-weight: 300;
 		letter-spacing: 0.1em;
-		color: var(--text-color);
-		color: #fff;
 		color: var(--accent-color);
-		/* background: var(--accent-color); */
 		width: 200px;
 		margin: 1.5em auto 0;
-		/* border-radius: 39px; */
 		padding: 3px 0 1px;
-		/* border-radius: 31px; */
 		border: solid 1px var(--accent-color);
+		outline: none;
+		/*アニメーションの指定*/
+		transition: all .3s ease-in-out;
 	}
 
+	.btn:hover{
+		background:var(--accent-color);
+		color:#fff;
+	}
 
-	/* 各category記事セクション */
+	/*矢印と下線の形状*/
+	.btn::before{
+		content:"";
+		/*絶対配置で下線の位置を決める*/
+		position: absolute;
+		top:50%;
+		right:-22px;
+		/*下線の形状*/
+		width:30px;
+		height:1px;
+		background:var(--accent-color);
+		/*アニメーションの指定*/
+		transition: all .3s ease-in-out;
+	}
+
+	.btn::after{
+		content:"";
+		/*絶対配置で矢印の位置を決める*/
+		position: absolute;
+	    top: 16%;
+    	right: -17px;
+		/*矢印の形状*/
+		width:1px;
+		height:12px;
+		background:var(--accent-color);
+		transform:skewX(45deg);
+		/*アニメーションの指定*/
+		transition: all .3s ease-in-out;
+	}
+
+	/*hoverした際の移動*/
+	.btn:hover::before{
+		right:-30px;
+	}
+
+	.btn:hover::after{
+		right:-25px;
+	}
+
+	{/* 各categoryカードセクション */}
 	.category-section {
 		margin: 40px 0;
 	}
@@ -416,6 +464,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		background-color: var(--light-gray);
 		padding: 20px;
 	}
+
 	.section-header {
 		display: flex;
 		justify-content: space-between;
@@ -461,36 +510,63 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 	}
 
 	.section-header a {
+		position:relative;
 		font-style: normal;
 		font-weight: 300;
 		color: var(--text-color);
 		font-size: 1.4rem;
-		text-align: center;
-		letter-spacing: 0.1em;
-		border: solid 1px;
+		letter-spacing: 0.05em;
 		padding: 2px 0;
-		background-color: var(--background-color);
+		display:inline-block;
+		text-decoration: none;
+		outline: none;
 	}
 
-	/* カテゴリ別のborderカラー */
-	.web .section-header a {
-		 border-color: var(--category-web);
-		 width: 105px;
+	.section-header a::before,
+	.section-header a::after{
+		content:'';
+		/*絶対配置で線の位置を決める*/
+		position:absolute;
+		z-index:1;
+		bottom:0;
+		left:0;
+		/*線の形状*/   
+		width:30px;
+		height:1px;
+		/*アニメーションの指定*/
+		transition:all 0.3s ease-in-out;
+	}
+
+	/*hover時に伸びる線の形状*/   
+	.section-header a::after{
+		width:0;
+		background:#ccc;
+	}
+
+	/*hover時に100%に伸びる*/   
+	.section-header a:hover::after {
+		width:100%;
+}
+
+	{/* カテゴリ別のborderカラー */}
+	.web .section-header a::before,
+	.web .section-header a::after {
+		 background: var(--category-web);
 	}
 	
-	.photo .section-header a {
-		 border-color: var(--category-photo);
-		  width: 118px; 
+	.photo .section-header a::before,
+	.photo .section-header a::after {
+		 background: var(--category-photo);
 	}
 
-	.stroll .section-header a {
-		 border-color: var(--category-stroll); 
-		 width: 114px;
+	.stroll .section-header a::before,
+	.stroll .section-header a::after {
+		 background: var(--category-stroll); 
 	}
 
-	.succulent .section-header a { 
-		border-color: var(--category-succulent);
-		width: 150px;
+	.succulent .section-header a::before,
+	.succulent .section-header a::after { 
+		background: var(--category-succulent);
 	 }
 
 	/* swiperのスタイル */
@@ -514,7 +590,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 	}
 
 
-/* 768px以下の対応 */
+{/* 768px以下の対応 */}
 @media (max-width: 768px) {
 	.site-header {
 		flex-direction: column;
@@ -565,12 +641,6 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		top: 6.3em;
 	}
 
-	.section-header a {
-		display: block;
-		text-align: left;
-		text-indent: 1em;
-	}
-
 	.section-header h2{
 		margin-bottom: 8px;
 	}
@@ -585,7 +655,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 }
 
 
-/* 450px以下の対応 */
+{/* 450px以下の対応 */}
 @media (max-width: 450px) {
 	.hero-logo {
 		width:230px;
@@ -634,7 +704,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 		font-size: calc(4.5rem * 1.35);
 	}
 
-	/* swiperのスタイル */
+	{/* swiperのスタイル */}
 	.swiper-button-prev:after,.swiper-button-next:after {
 		display: none;
 	}

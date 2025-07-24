@@ -257,39 +257,6 @@ code {
   margin-top: 0.1em;
 }
 
-/* 記事下のナビゲーション */
-.post-navigation {
-  margin-top: 60px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-}
-
-.post-navigation a {
-  display: block;
-  padding: 10px 20px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  color: var(--main-color);
-  text-decoration: none;
-  transition: background-color 0.2s;
-}
-.post-navigation a:hover {
-  background-color: var(--light-gray);
-}
-
-.post-navigation a.current {
-  background-color: var(--main-color);
-  color: white;
-  font-weight: 500;
-}
-
-.post-navigation a.current:hover {
-  background-color: var(--main-color);
-  opacity: 0.9;
-}
-
 /* ４５０ｐｘ以下調整（ブログ詳細ページ） */
 @media (max-width: 450px) {
   /* .post-title {

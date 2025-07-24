@@ -20,6 +20,9 @@ date: 2025-01-15 静的サイト生成に特化したモダンな JavaScript フ
 
 ## インストール方法
 
-```bash
-npm create astro@latest my-blog-site
+    ```bash
+    npm create astro@latest my-blog-site
+
+```
+
 ```

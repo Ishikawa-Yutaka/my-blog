@@ -7,7 +7,7 @@ import ArticleGrid from '../../../components/ArticleGrid.astro';
 
 // 動的ルートで必要なパスを生成
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+const posts = await getCollection('blog');
   
   // ユニークなカテゴリを取得
   const categories = [...new Set(posts.map(post => post.data.category))];
@@ -24,25 +24,25 @@ const { category } = Astro.props;
 const posts = await getCollection('blog', (post) => post.data.category === category);
 posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
-// カテゴリー名の日本語マッピング
-const categoryNames = {
-  web: { ja: 'ウェブ' },
-  photo: { ja: '写真' },
-  stroll: {  ja: '散歩' },
-  succulent: {ja: '多肉植物' }
+// 日本語に対応
+const categoryJaMap = {
+  photo: "写真",
+  web: "ウェブ",
+  stroll: "散歩",
+  succulent: "多肉植物"
 };
-const categoryLabel = categoryNames[category] || { ja: '不明' };
+
 ---
 
-<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} categoryName={category}>
-    <h1 class={`post-list ${category}`}>{category}の投稿<br/><span>{category} posts</span></h1>
+<Layout>
+    <h1 class={`post-list ${category}`}>{category}の投稿<br/><span>{categoryJaMap[category] ?? category}</span></h1>
     <div class="post-wrapper">
         <ArticleGrid posts={posts} />
     </div>
 </Layout>
 
 <style>
-    h1::first-letter{
+  h1::first-letter{
 		font-size: calc(3rem * 1.35);
 		font-weight: 200;
         text-transform: uppercase;
@@ -64,8 +64,12 @@ const categoryLabel = categoryNames[category] || { ja: '不明' };
 		color: var(--category-succulent);
 	}
 
-    .post-list span::before {
-        top: -14px;
-    }
+  .post-list span{
+    letter-spacing:0.05em;
+  }
+  
+  .post-list span::before {
+    top: -14px;
+  }
    
 </style>
