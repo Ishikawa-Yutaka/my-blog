@@ -15,7 +15,34 @@ Astro の仕様が影響しているのか、それとも書き方のミスか�
 
 ## これを書いたら動いた！
 
-そこで頼ったのは、やはり AI 先生。質問してみたところ、「公式コードに document.addEventListener('DOMContentLoaded', function() {...}) を追加してみて」とのアドバイス。
+そこで頼ったのは、やはり AI 先生。質問してみたところ、以下のようにdocument.addEventListener〜でSwiperのコードを囲むとのアドバイス。
+
+```
+document.addEventListener('DOMContentLoaded', function() {
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'vertical',
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // And if we need scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    });
+})
+```
+
 半信半疑で試してみたら……なんと、動く！さすが AI 先生、頼りになります。
 
 ## 原因はなに？
@@ -24,6 +51,6 @@ Astro の仕様が影響しているのか、それとも書き方のミスか�
 もし JavaScript が、これらの要素がまだ生成されていないタイミングで実行されると、Swiper はうまく初期化できず動かない、というわけです。
 おそらく Astro の仕様でタイミングがずれているのだと思います。
 
-そのため、DOMContentLoaded イベントを使って「DOM ツリーが完全に構築されてから Swiper の初期化コードを実行する」ようにする必要があった、ということですね。
+そのため、`DOMContentLoaded`イベントを使って「DOM ツリーが完全に構築されてから Swiper の初期化コードを実行する」ようにする必要があった、ということですね。
 
 なるほど、これでまたひとつ経験値を得ました。Web 制作の道は、こうした小さな不具合を地道に一つずつ乗り越えていくしかないんだなと実感しました。引き続き、頑張っていきます！

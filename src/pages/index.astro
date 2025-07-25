@@ -91,7 +91,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			<section class="category-section photo fuwa">
 				<header class="section-header">
 					<h2>Photo<span>- 写真</span></h2>
-					<a href={getPath('blog/photo')}>Photoの投稿へ</a>
+					<a href={getPath('blog/photo')}><span>Photoの投稿へ</span></a>
 				</header>
 				<div class="category-section-bg">
 					<ArticleGrid posts={postsByCategory.photo} categoryName="Photo" />
@@ -101,7 +101,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			<section class="category-section stroll fuwa">
 				<header class="section-header">
 					<h2>Stroll<span>- 散歩</span></h2>
-					<a href={getPath('blog/stroll')}>Strollの投稿へ</a>
+					<a href={getPath('blog/stroll')}><span>Strollの投稿へ</span></a>
 				</header>
 				<div class="category-section-bg">
 					<ArticleGrid posts={postsByCategory.stroll} categoryName="Stroll" />
@@ -111,7 +111,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			<section class="category-section succulent fuwa">
 				<header class="section-header">
 					<h2>Succulent<span>- 多肉植物</span></h2>
-					<a href={getPath('blog/succulent')}>Succulentの投稿へ</a>
+					<a href={getPath('blog/succulent')}><span>Succulentの投稿へ</span></a>
 				</header>
 				<div class="category-section-bg">
 					<ArticleGrid posts={postsByCategory.succulent} categoryName="Succulent" />
@@ -140,7 +140,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			margin: auto;
 			position: relative;
 			top: 50%;
-			transform: translateY(-55%);
+			transform: translateY(-60%);
 		}
 
 		.hero h1 {
@@ -511,13 +511,17 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 
 		.section-header a {
 			position:relative;
+			padding: 2px 0;
+			display:inline-block;
+		}
+
+		.section-header a span{
+			position:relative;
 			font-style: normal;
 			font-weight: 300;
 			color: var(--text-color);
 			font-size: 1.5rem;
 			letter-spacing: 0.05em;
-			padding: 2px 0;
-			display:inline-block;
 			text-decoration: none;
 			outline: none;
 		}
@@ -532,7 +536,7 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 			left:0;
 			/*線の形状*/   
 			width:30px;
-			height:1px;
+			height:1.5px;
 			/*アニメーションの指定*/
 			transition:all 0.3s ease-in-out;
 		}
@@ -664,11 +668,14 @@ import ArticleGrid from '../components/ArticleGrid.astro';
 				width: 58px;
 				margin: auto;
 				transform: translate(14px, -84px);
-				
 				/* 小画面用の落ちてくるアニメーション */
 				opacity: 0;
 				transform: translate(14px, -170px);
 				animation: dropInSmall 0.19s ease-out 1s forwards;
+			}
+
+			.new-article {
+				width: 90%;
 			}
 			
 			/* 小画面用の落ちてくるアニメーション */

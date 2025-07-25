@@ -25,240 +25,8 @@ import { getPath } from '../env';
     </div>
 </header>
 
-<!-- <style>
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 4vw;
-        /* height:65px; */
-        position: sticky;
-        top: 0;
-        z-index: 99999;
-        background-color: #fff;
-        box-shadow: 0px 2px 6px #f4f4f4;
-    }
-    .logo a {
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-decoration: none;
-        color: #333;
-    }
-    .logo img {
-        width: 80px;
-        position:relative;
-        z-index:100000;
-    }
-    nav ul {
-        display: flex;
-        gap: 1.8em;
-        list-style: none;
-        margin-block-start: 0em;
-        margin-block-end: 0em;
-        padding-inline-start: 0px;
-        padding-inline-end: 0px;
-    }
-    
-    /* 初期状態でハンバーガーメニューを非表示 */
-    .openbtn {
-        display: none;
-        opacity: 0;
-        visibility: hidden;
-    }
-    .nav-menu a {
-        text-decoration: none;
-        color: #333;
-        font-size: 1.7rem;
-        font-weight: 200;
-        position:relative;
-        transition: color .4s;
-    }
-
-    .nav-menu a::after{
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1.5px;
-        background-color: var(--accent-color);
-        transition: scale .4s;
-        scale: 0;
-    }
-
-    .nav-menu a:hover::after{
-        scale: 1;
-    }
-
-    .nav-menu a:hover {
-        color: var(--accent-color);
-    }
-    
-
-/* 768px以下の対応 */
-  @media (max-width: 768px) {
-    .header{
-        display:block;
-    }
-    
-    /* デスクトップ用のナビゲーションを非表示 */
-    /* nav ul {
-        display: none;
-    } */
-
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-        list-style: none;
-        text-align: center;
-        padding: 0 4vw; 
-    }
-    
-    /* 768px以下でハンバーガーメニューを表示 */
-    .openbtn {
-        display: block;
-        opacity: 1;
-        visibility: visible;
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-        background: #fff;
-        right: 4vw;
-        top: 9px;
-        z-index: 100000;
-        transition: opacity 0.3s ease, visibility 0.3s ease, background 0.4s ease 0.6s;
-    }
-    
-    /* ハンバーガーボタンがアクティブ時の背景色 */
-    .openbtn.active {
-        background: var(--main-color);
-        transition: opacity 0.3s ease, visibility 0.3s ease, background 0.4s ease;
-    }
-    
-    /* メニューパネル */
-    .menu-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        visibility: hidden;
-    }
-    
-    /* ナビゲーションの初期状態（非表示） */
-    .nav-menu {
-        opacity: 0;
-        z-index: 2;
-        transition: opacity 0.4s 0.2s;
-    }
-    
-    /* ナビゲーションが開いている状態 */
-    .nav-menu.active {
-        opacity: 1;
-    }
-    
-    .nav-menu.active li {
-        padding: 10px 0;
-    }
-    
-    .nav-menu.active a {
-        color: var(--text-color);
-        display: block;
-        padding: 1.5rem;
-        font-size: 2rem;
-        text-decoration: none;
-        transition: color 0.4s;
-    }
-    
-    .nav-menu.active a:hover {
-        color: var(--main-color);
-    }
-    
-    /* 円のスタイル */
-    .circle {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100px;
-        height: 100px;
-        background: var(--main-color);
-        border-radius: 50%;
-        scale: 0;
-        transition: 1s;
-    }
-    
-    /* メニュー表示 */
-    .menu-container.panel-open {
-        visibility: visible;
-    }
-    
-    .menu-container.panel-open .nav-menu {
-        opacity: 1;
-    }
-    
-    .menu-container.panel-open .circle {
-        scale: 28;
-    }
-    
-    nav ul{
-        flex-direction:column;
-        gap: 1em;
-        padding: 0 4vw;
-    }
-    
-    nav li {
-        padding: 10px 0;
-        border-bottom: 0.5px solid var(--usually-gray);
-    }
-    
-    nav li:last-child {
-        border-bottom: none;
-    }
-    
-	
-    /*ボタン内側*/
-    .openbtn span{
-        display: inline-block;
-        transition: all 0.7s ease;/*アニメーションの設定*/
-        position: absolute;
-        left: 13px;
-        height: 2px;
-        background-color: var(--text-color);
-    }
 
 
-    .openbtn span:nth-of-type(1) {
-        top:22px;	
-        width: 50%;
-    }
-
-    .openbtn span:nth-of-type(2) {
-        top:29px;
-        width:30%;
-    }
-
-    /*activeクラスが付与されると線が回転して×に*/
-    .openbtn.active span:nth-of-type(1) {
-        top: 20px;
-        left: 16px;
-        transform: translateY(6px) rotate(-45deg);
-        width: 35%;
-    }
-
-    .openbtn.active span:nth-of-type(2) {
-        top: 32px;
-        left: 16px;
-        transform: translateY(-6px) rotate(45deg);
-        width: 35%;
-    }
-  }
-</style> -->
 <style>
 /* === 初期状態（PC表示）=== */
 .header {
@@ -328,6 +96,10 @@ import { getPath } from '../env';
     display: block; /* display:flex だとロゴが左に寄らないため */
   }
 
+  .nav-menu a::after {
+  transition:none;
+}
+
   /* --- デスクトップ用メニューは非表示 --- */
   .nav-menu {
     display: none;
@@ -359,7 +131,6 @@ import { getPath } from '../env';
   }
 
   /* --- 開いたメニュー内のナビゲーション --- */
-  /* .nav-menu.active というクラスはもう使わない */
   .menu-container.panel-open .nav-menu {
     display: block; /* 再表示させる */
     opacity: 1; /* nav-menu自体はアニメーションさせないので常に1 */
