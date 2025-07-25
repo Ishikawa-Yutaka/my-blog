@@ -96,9 +96,9 @@ import { getPath } from '../env';
     display: block; /* display:flex だとロゴが左に寄らないため */
   }
 
-  .nav-menu a::after {
-  transition:none;
-}
+  .nav-menu a::after,.nav-menu a {
+    transition: none;
+  }
 
   /* --- デスクトップ用メニューは非表示 --- */
   .nav-menu {
