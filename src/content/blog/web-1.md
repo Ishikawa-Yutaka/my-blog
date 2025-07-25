@@ -1,10 +1,10 @@
 ---
-title: '最初につまずた！<Slot /> と <Content /> の使い分け'
+title: 'Astroで最初につまずいた！<Slot /> と <Content /> の使い分け'
 date: 2025-07-13
 category: 'web'
 tags: ['web', 'astro', 'blog']
 description: 'Astroフレームワークを使ってブログサイトを構築する手順を解説します。'
-image: 'images/img-test.png'
+image: 'images/web-1.png'
 ---
 
 ## Astro で初めての Web 制作

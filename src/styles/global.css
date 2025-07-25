@@ -217,6 +217,7 @@ code {
   color: var(--text-color);
   font-size: 1.5rem;
   font-weight: 200;
+  font-family: 'IBM Plex Sans JP', sans-serif;
   text-align: right;
   display: inline-block;
   width: 100%;
